@@ -1,106 +1,40 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import { stayColumns, stayRows } from "../content";
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "Rosehall", href: base },
-  { label: "Package proof" },
-]);
-
-const packageColumns = JSON.stringify([
-  { key: "package", header: "Package" },
-  { key: "version", header: "Version" },
-  { key: "usage", header: "Usage" },
-]);
-
-const packageRows = JSON.stringify([
-  { package: "@corvaui/web-components", version: "0.1.7", usage: "Custom elements registered in the shared Astro layout" },
-  { package: "@corvaui/tokens", version: "0.1.7", usage: "Token CSS imported once and applied through data-corva-theme" },
-  { package: "astro", version: "^7.2.9", usage: "File-based static routes for the hospitality app" },
-]);
-
-const routeColumns = JSON.stringify([
-  { key: "route", header: "Route" },
-  { key: "proof", header: "Proof point" },
-]);
-
-const routeRows = JSON.stringify([
-  { route: "/", proof: "Hospitality home, portfolio story, property proof, CTA" },
-  { route: "/dashboard/", proof: "Revenue charts, arrival queue, workflow widgets" },
-  { route: "/work-orders/", proof: "Event intake form with date, time, file, radio, and select controls" },
-  { route: "/customers/", proof: "Guest records, preference tree, workflow, grid, and detail" },
-  { route: "/data-table/", proof: "Dedicated sortable/filterable booking grid" },
-  { route: "/settings/", proof: "Tabs, toggles, locale, account, and property preferences" },
-  { route: "/about/", proof: "Package and integration explanation" },
-]);
-
-const integrationSteps = JSON.stringify([
-  { id: "tokens", label: "Import tokens", description: "@corvaui/tokens/css loads theme variables." },
-  { id: "components", label: "Register elements", description: "Shared layout imports CorvaUI custom elements once." },
-  { id: "routes", label: "Compose pages", description: "Astro routes use static markup and local layout CSS." },
-]);
 ---
-
-<BaseLayout title="Package Proof | Rosehall Hospitality">
-  <main class="app-main">
-    <div class="app-page">
-      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
-
-      <section class="page-intro" aria-labelledby="about-title">
-        <div>
-          <corva-badge tone="success">Package proof</corva-badge>
-          <corva-typography id="about-title" as="h1" variant="display">Astro integration proof</corva-typography>
-          <corva-typography variant="body">
-            This CorvaUI route explains the installed CorvaUI packages and shows that the demo is a multi-page hospitality app, not a component preview page.
-          </corva-typography>
-        </div>
-        <corva-card eyebrow="Theme" heading="rose-light first">
-          <corva-progress label="Light route coverage" value="100"></corva-progress>
-          <corva-progress label="Dark smoke coverage" value="100"></corva-progress>
-        </corva-card>
-      </section>
-
-      <section class="app-two-column app-two-column-wide" aria-label="Package proof tables">
-        <corva-data-table caption="Installed packages" columns={packageColumns} rows={packageRows}></corva-data-table>
-        <corva-card eyebrow="Integration" heading="How Astro uses CorvaUI">
-          <corva-stepper steps={integrationSteps} active-index="2"></corva-stepper>
-          <corva-divider label="Constraint"></corva-divider>
-          <corva-alert tone="info" heading="Composition CSS only">
-            Local CSS handles page shell, grids, spacing, and responsive layout. Component visuals remain CorvaUI web components and token-driven styles.
-          </corva-alert>
-        </corva-card>
-      </section>
-
-      <section class="app-section" aria-labelledby="routes-title">
-        <div class="app-section-header">
-          <div>
-            <corva-typography id="routes-title" as="h2" variant="title">Route acceptance map</corva-typography>
-            <corva-typography variant="body">Each file in src/pages maps to a required business surface.</corva-typography>
-          </div>
-          <corva-badge tone="success">Current</corva-badge>
-        </div>
-        <corva-data-grid caption="Astro routes" columns={routeColumns} rows={routeRows}></corva-data-grid>
-      </section>
-
-      <section class="app-section" aria-labelledby="next-title">
-        <corva-card eyebrow="Release evidence" heading="CorvaUI demo scope">
-          <div class="feature-grid">
-            <div class="proof-note">
-              <corva-icon name="sparkle" label="Theme icon"></corva-icon>
-              <span>Rose tokens power the canvas, text, surfaces, accents, and component states.</span>
-            </div>
-            <div class="proof-note">
-              <corva-icon name="layout-dashboard" label="Routes icon"></corva-icon>
-              <span>Astro file routing creates independent static pages under the demo subdomain.</span>
-            </div>
-            <div class="proof-note">
-              <corva-icon name="shield-check" label="Proof icon"></corva-icon>
-              <span>Business pages use CorvaUI components as application controls and records.</span>
-            </div>
-          </div>
-        </corva-card>
-      </section>
+<BaseLayout title="Stay + Gather | Fieldnote House">
+  <header class="page-hero">
+    <div>
+      <corva-badge tone="info">Ways to be here</corva-badge>
+      <corva-typography as="h1" variant="display">A room, a house, or the whole horizon.</corva-typography>
+      <corva-typography variant="body">Choose the amount of privacy, hosting, and production your stay needs. The house remains attentive at every scale.</corva-typography>
     </div>
-  </main>
+    <corva-card eyebrow="Fieldnote standard" heading="Breakfast, studio, landscape">Every stay includes the shared table, trail access, and a host who knows why you came.</corva-card>
+  </header>
+
+  <section class="table-section" aria-labelledby="compare-title">
+    <div class="section-heading compact">
+      <corva-typography id="compare-title" as="h2" variant="title">Stay comparison</corva-typography>
+      <p>Three formats, one house rhythm.</p>
+    </div>
+    <corva-data-table id="stay-table" caption="Fieldnote stay comparison"></corva-data-table>
+  </section>
+
+  <section class="stay-notes" aria-label="Stay formats">
+    <article><span>Field Room</span><h2>Private, with a table nearby.</h2><p>For a solo reset or a weekend for two. Join the house when you want to.</p></article>
+    <article><span>House Stay</span><h2>Your people, held together.</h2><p>Eight guests, a private dining rhythm, and enough room for conversation to change pace.</p></article>
+    <article><span>Full Retreat</span><h2>The whole place in service.</h2><p>Rooms, studio, table, landscape, and a producer shaping every transition.</p></article>
+  </section>
+
+  <section class="principle-band">
+    <div><small>Hosting principle 03</small><h2>Structure should disappear once everyone arrives.</h2></div>
+    <corva-link href={`${base}data-table/`} variant="button">Check bookings</corva-link>
+  </section>
+
+  <script define:vars={{ stayColumns, stayRows }}>
+    customElements.whenDefined("corva-data-table").then(() => {
+      Object.assign(document.querySelector("#stay-table"), { columns: stayColumns, rows: stayRows });
+    });
+  </script>
 </BaseLayout>

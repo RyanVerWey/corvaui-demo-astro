@@ -7,12 +7,20 @@
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
-    "test": "npm audit && npm run build"
+    "test:unit": "vitest run",
+    "pretest:e2e": "npm run build",
+    "test:e2e": "playwright test",
+    "test": "npm audit && npm run test:unit && npm run build"
   },
   "dependencies": {
     "@corvaui/tokens": "0.1.7",
     "@corvaui/web-components": "0.1.7",
     "astro": "^7.2.9",
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "axe-core": "^4.13.0",
+    "vitest": "^4.1.11"
   }
 }

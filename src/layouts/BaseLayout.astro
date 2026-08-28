@@ -1,131 +1,97 @@
 ---
 import "@corvaui/tokens/css";
 import "../styles.css";
+import { routes } from "../content";
 
-const { title = "Rosehall Hospitality" } = Astro.props;
+const { title = "Fieldnote House" } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const currentPath = Astro.url.pathname.replace(/\/$/, "");
-const navItems = [
-  { href: base, label: "Home", path: base.replace(/\/$/, "") },
-  { href: `${base}dashboard/`, label: "Revenue dashboard", path: `${base}dashboard` },
-  { href: `${base}work-orders/`, label: "Event intake", path: `${base}work-orders` },
-  { href: `${base}customers/`, label: "Guests", path: `${base}customers` },
-  { href: `${base}data-table/`, label: "Booking table", path: `${base}data-table` },
-  { href: `${base}settings/`, label: "Settings", path: `${base}settings` },
-  { href: `${base}about/`, label: "Proof", path: `${base}about` },
-];
+const basePath = base.replace(/\/$/, "");
+const currentPath = Astro.url.pathname.replace(basePath, "").replace(/\/$/, "") || "/";
 ---
 <!doctype html>
-<html lang="en" data-corva-theme="rose-light">
+<html lang="en" data-corva-theme="graphite-light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Rosehall Hospitality demo site built with Astro routing, CorvaUI web components, and rose tokens."
-    />
+    <meta name="description" content="Fieldnote House, a design-led retreat and hospitality showcase built with Astro and CorvaUI." />
     <title>{title}</title>
   </head>
   <body>
-    <div class="app-shell">
-      <corva-app-bar heading="Rosehall Hospitality">
-        <corva-badge tone="info">CorvaUI Astro</corva-badge>
-        <nav class="app-nav" slot="navigation" aria-label="Primary">
-          {
-            navItems.map((item) => (
-              <corva-link
-                href={item.href}
-                variant={currentPath === item.path ? "standalone" : "subtle"}
-              >
-                {item.label}
-              </corva-link>
-            ))
-          }
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-shell">
+      <corva-app-bar heading="Fieldnote House">
+        <nav class="primary-nav" slot="navigation" aria-label="Primary navigation">
+          {routes.map((route) => (
+            <a href={`${base}${route.href === "/" ? "" : route.href.slice(1)}`} aria-current={currentPath === route.href.replace(/\/$/, "") ? "page" : undefined}>{route.label}</a>
+          ))}
         </nav>
-        <div class="app-theme" slot="actions">
-          <corva-switch id="theme-switch" label="Dark"></corva-switch>
-        </div>
+        <corva-switch id="theme-switch" slot="actions" label="Dark mode"></corva-switch>
       </corva-app-bar>
+      <details class="mobile-menu">
+        <summary>Menu</summary>
+        <nav aria-label="Mobile navigation">
+          {routes.map((route) => (
+            <a href={`${base}${route.href === "/" ? "" : route.href.slice(1)}`} aria-current={currentPath === route.href.replace(/\/$/, "") ? "page" : undefined}>{route.label}</a>
+          ))}
+        </nav>
+      </details>
 
-      <slot />
+      <main id="main-content" tabindex="-1"><slot /></main>
+
+      <footer>
+        <span>Fieldnote House, Catskill Foothills</span>
+        <span>Astro + CorvaUI</span>
+        <a href="https://www.corvaui.com/">Design system documentation</a>
+      </footer>
     </div>
 
     <script>
-      import "@corvaui/web-components/components/corva-accordion.js";
       import "@corvaui/web-components/components/corva-alert.js";
       import "@corvaui/web-components/components/corva-app-bar.js";
-      import "@corvaui/web-components/components/corva-autocomplete.js";
-      import "@corvaui/web-components/components/corva-avatar.js";
       import "@corvaui/web-components/components/corva-badge.js";
-      import "@corvaui/web-components/components/corva-button-group.js";
-      import "@corvaui/web-components/components/corva-box.js";
-      import "@corvaui/web-components/components/corva-breadcrumbs.js";
       import "@corvaui/web-components/components/corva-button.js";
       import "@corvaui/web-components/components/corva-card.js";
       import "@corvaui/web-components/components/corva-chart.js";
-      import "@corvaui/web-components/components/corva-checkbox.js";
-      import "@corvaui/web-components/components/corva-chip.js";
-      import "@corvaui/web-components/components/corva-date-picker.js";
       import "@corvaui/web-components/components/corva-data-grid.js";
       import "@corvaui/web-components/components/corva-data-table.js";
-      import "@corvaui/web-components/components/corva-divider.js";
-      import "@corvaui/web-components/components/corva-empty-state.js";
-      import "@corvaui/web-components/components/corva-icon.js";
       import "@corvaui/web-components/components/corva-link.js";
+      import "@corvaui/web-components/components/corva-paper.js";
       import "@corvaui/web-components/components/corva-progress.js";
-      import "@corvaui/web-components/components/corva-radio-group.js";
-      import "@corvaui/web-components/components/corva-rating.js";
-      import "@corvaui/web-components/components/corva-search-form.js";
-      import "@corvaui/web-components/components/corva-select.js";
-      import "@corvaui/web-components/components/corva-slider.js";
       import "@corvaui/web-components/components/corva-stack.js";
-      import "@corvaui/web-components/components/corva-stepper.js";
       import "@corvaui/web-components/components/corva-switch.js";
       import "@corvaui/web-components/components/corva-tabs.js";
-      import "@corvaui/web-components/components/corva-text-field.js";
-      import "@corvaui/web-components/components/corva-textarea.js";
-      import "@corvaui/web-components/components/corva-time-picker.js";
-      import "@corvaui/web-components/components/corva-timeline.js";
-      import "@corvaui/web-components/components/corva-toggle-group.js";
-      import "@corvaui/web-components/components/corva-toolbar.js";
-      import "@corvaui/web-components/components/corva-tree-view.js";
       import "@corvaui/web-components/components/corva-typography.js";
-      import "@corvaui/web-components/components/corva-workflow-board.js";
 
-      const storageKey = "rosehall-theme";
       const root = document.documentElement;
-      const switchEl = document.querySelector("#theme-switch");
+      const control = document.querySelector("#theme-switch");
+      const stored = localStorage.getItem("fieldnote-theme") || "graphite-light";
 
-      const readTheme = () => {
-        try {
-          return localStorage.getItem(storageKey) || "rose-light";
-        } catch {
-          return "rose-light";
-        }
-      };
-
-      const writeTheme = (theme) => {
-        try {
-          localStorage.setItem(storageKey, theme);
-        } catch {
-          return;
-        }
-      };
-
-      const applyTheme = (theme) => {
+      const applyTheme = (theme: string) => {
         root.dataset.corvaTheme = theme;
-        if (switchEl) {
-          switchEl.checked = theme === "rose-dark";
-        }
+        if (control) (control as HTMLInputElement).checked = theme === "graphite-dark";
       };
 
-      applyTheme(readTheme());
-
-      switchEl?.addEventListener("corvaChange", (event) => {
-        const theme = event.detail?.checked ? "rose-dark" : "rose-light";
-        writeTheme(theme);
+      applyTheme(stored);
+      control?.addEventListener("corvaChange", (event) => {
+        const checked = (event as CustomEvent<{ checked: boolean }>).detail.checked;
+        const theme = checked ? "graphite-dark" : "graphite-light";
+        localStorage.setItem("fieldnote-theme", theme);
         applyTheme(theme);
       });
+
+      const prepareScrollableTables = () => {
+        document.querySelectorAll<HTMLElement>(".corva-table-container").forEach((container) => {
+          const caption = container.querySelector("caption")?.textContent?.trim() ?? "Data table";
+          container.tabIndex = 0;
+          container.setAttribute("role", "region");
+          container.setAttribute("aria-label", `${caption}, horizontally scrollable`);
+        });
+      };
+
+      Promise.all([
+        customElements.whenDefined("corva-data-table"),
+        customElements.whenDefined("corva-data-grid"),
+      ]).then(() => requestAnimationFrame(() => requestAnimationFrame(prepareScrollableTables)));
     </script>
   </body>
 </html>

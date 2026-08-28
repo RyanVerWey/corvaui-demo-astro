@@ -1,6 +1,6 @@
 # CorvaUI Astro Demo
 
-Public Vercel demo using Astro, direct `@corvaui/web-components` custom elements, `@corvaui/tokens`, and the rose token family. The app mocks Rosehall Hospitality, a boutique hotel revenue, events, and guest-operations product.
+Public Vercel showcase using Astro, direct `@corvaui/web-components` custom elements, `@corvaui/tokens`, and the Graphite token family. Fieldnote House is a four-route hospitality site with image-led marketing, stay comparison, a booking DataGrid, and revenue reports.
 
 ## Routes
 

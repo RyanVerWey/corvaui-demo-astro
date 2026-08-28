@@ -1,115 +1,50 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
 const base = import.meta.env.BASE_URL;
-const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Home" }]);
-const demandData = JSON.stringify([
-  { label: "Rooms", value: 82 },
-  { label: "Events", value: 46 },
-  { label: "Dining", value: 33 },
-  { label: "Spa", value: 19 },
-]);
-const propertyColumns = JSON.stringify([
-  { key: "property", header: "Property" },
-  { key: "occupancy", header: "Occupancy" },
-  { key: "adr", header: "ADR" },
-  { key: "status", header: "Status" },
-]);
-const propertyRows = JSON.stringify([
-  { property: "Rosehall Harbor", occupancy: "91%", adr: "$312", status: "Compression" },
-  { property: "Rosehall Garden", occupancy: "76%", adr: "$248", status: "Group arrival" },
-  { property: "Rosehall West", occupancy: "84%", adr: "$226", status: "Stable" },
-]);
-const guestSteps = JSON.stringify([
-  { id: "book", label: "Book", description: "Room, rate, and preference captured." },
-  { id: "prepare", label: "Prepare", description: "Arrival plan, dining, and event notes set." },
-  { id: "delight", label: "Delight", description: "Service recovery and post-stay follow-up." },
-]);
 ---
-
-<BaseLayout title="Rosehall Hospitality | CorvaUI Astro Demo">
-  <main class="app-main">
-    <div class="app-page">
-      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
-
-      <section class="hero-band" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <corva-stack gap="lg">
-            <corva-badge tone="success">Hospitality revenue and guest operations</corva-badge>
-            <corva-typography id="hero-title" as="h1" variant="display">
-              Rosehall turns bookings, events, and guest care into one operating view.
-            </corva-typography>
-            <corva-typography variant="body">
-              An Astro demo for boutique hotel groups that need rate decisions, VIP arrivals, banquet events, and service recovery to stay coordinated.
-            </corva-typography>
-            <div class="app-actions">
-              <corva-button size="lg">Review pickup</corva-button>
-              <corva-button variant="secondary" size="lg">Plan event week</corva-button>
-            </div>
-          </corva-stack>
-        </div>
-
-        <div class="signal-panel">
-          <corva-card eyebrow="Portfolio" heading="Tonight at a glance">
-            <div class="metric-row">
-              <span><strong>84%</strong> occupancy</span>
-              <span><strong>$268</strong> ADR</span>
-              <span><strong>41</strong> VIP arrivals</span>
-            </div>
-            <corva-chart label="Demand mix" data={demandData}></corva-chart>
-          </corva-card>
-          <corva-alert tone="info" heading="Business story">
-            Revenue, front office, events, and guest experience teams share the same operating picture before arrivals begin.
-          </corva-alert>
-        </div>
-      </section>
-
-      <section class="app-section" aria-labelledby="offer-title">
-        <div class="app-section-header">
-          <div>
-            <corva-typography id="offer-title" as="h2" variant="title">Boutique hotel control room</corva-typography>
-            <corva-typography variant="body">Built for properties where rate, event, and guest promises need the same source of truth.</corva-typography>
-          </div>
-          <corva-button-group label="Primary actions">
-            <corva-button size="sm">Open arrivals</corva-button>
-            <corva-button size="sm" variant="secondary">Review groups</corva-button>
-          </corva-button-group>
-        </div>
-
-        <div class="feature-grid">
-          <corva-card eyebrow="Revenue" heading="Pickup without spreadsheet drift">
-            Segment demand, rate moves, and group blocks stay visible beside operational readiness.
-          </corva-card>
-          <corva-card eyebrow="Guest care" heading="VIP arrival memory">
-            Preferences, incidents, dining notes, and recovery commitments follow the reservation.
-          </corva-card>
-          <corva-card eyebrow="Events" heading="Banquet execution">
-            BEO changes, setup status, deposits, and staffing risk sit in the same event record.
-          </corva-card>
-        </div>
-      </section>
-
-      <section class="app-section" aria-labelledby="proof-title">
-        <div class="app-two-column">
-          <div>
-            <div class="app-section-header compact">
-              <div>
-                <corva-typography id="proof-title" as="h2" variant="title">Property proof</corva-typography>
-                <corva-typography variant="body">The demo exercises real tables, charts, forms, workflow, settings, and routed pages.</corva-typography>
-              </div>
-            </div>
-            <corva-data-table caption="Portfolio watch" columns={propertyColumns} rows={propertyRows}></corva-data-table>
-          </div>
-          <corva-card eyebrow="Guest journey" heading="Reservation to recovery">
-            <corva-stepper steps={guestSteps} active-index="1"></corva-stepper>
-            <corva-divider label="Next route"></corva-divider>
-            <div class="app-actions">
-              <corva-link href={`${base}dashboard/`}>View revenue dashboard</corva-link>
-              <corva-link href={`${base}work-orders/`}>Start event intake</corva-link>
-            </div>
-          </corva-card>
-        </div>
-      </section>
+<BaseLayout title="Fieldnote House | Stay, Gather, Make">
+  <section class="home-hero" aria-labelledby="home-title">
+    <figure class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1700&q=86" alt="Warm timber-and-stone living room opening onto a quiet woodland landscape" />
+    </figure>
+    <div class="hero-copy">
+      <corva-badge tone="info">Catskill foothills · 42.1948° N</corva-badge>
+      <corva-typography id="home-title" as="h1" variant="display">Room to hear what comes next.</corva-typography>
+      <corva-typography variant="body">A twelve-room house for slow weekends, focused retreats, and gatherings that need more than a venue.</corva-typography>
+      <div class="hero-actions">
+        <corva-link href={`${base}about/`} variant="button">Plan a stay</corva-link>
+        <corva-link href={`${base}data-table/`} variant="standalone">View availability</corva-link>
+      </div>
+      <div class="arrival-note"><span>Next quiet arrival</span><strong>Sunday, 3:00 PM</strong></div>
     </div>
-  </main>
+  </section>
+
+  <section class="house-intro" aria-labelledby="house-title">
+    <div class="section-number">01</div>
+    <div>
+      <corva-typography id="house-title" as="h2" variant="title">A house that makes space for the work.</corva-typography>
+      <p>Fieldnote balances privacy and togetherness: small rooms, long tables, an open studio, and enough landscape to reset the conversation.</p>
+    </div>
+    <div class="house-facts"><span><strong>12</strong> rooms</span><span><strong>34</strong> acres</span><span><strong>01</strong> shared table</span></div>
+  </section>
+
+  <section class="experience-grid" aria-label="Fieldnote experiences">
+    <article class="experience-copy"><small>Stay</small><h2>Wake slowly.</h2><p>Natural light, wool, oak, and a breakfast that follows the season.</p></article>
+    <figure><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=84" alt="Calm guest room with pale wood, linen, and garden light" /></figure>
+    <article class="experience-copy dark"><small>Gather</small><h2>Bring the whole idea.</h2><p>Workshops, offsites, dinners, and celebrations with a producer who understands the shape of the day.</p></article>
+  </section>
+
+  <section class="fieldnote-proof" aria-labelledby="proof-title">
+    <div>
+      <corva-badge tone="success">This week at Fieldnote</corva-badge>
+      <corva-typography id="proof-title" as="h2" variant="title">Hospitality with an operating memory.</corva-typography>
+      <p>Every preference, room turn, event decision, and revenue signal lives in one readable system.</p>
+    </div>
+    <corva-card eyebrow="Guest readiness" heading="31 of 34 arrivals prepared"><corva-progress label="Arrival readiness" value="91"></corva-progress></corva-card>
+  </section>
+
+  <section class="closing-band">
+    <div><small>Make a fieldnote</small><h2>Come with a question. Leave with a direction.</h2></div>
+    <corva-link href={`${base}about/`} variant="button">Choose your stay</corva-link>
+  </section>
 </BaseLayout>

@@ -10,3 +10,6 @@ out
 .env
 .vercel
 .env*
+.astro
+test-results
+playwright-report

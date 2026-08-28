@@ -1,77 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
-const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Booking table" }]);
-const bookingColumns = JSON.stringify([
-  { key: "id", header: "Booking", sortable: true, filterable: true },
-  { key: "guest", header: "Guest", sortable: true, filterable: true },
-  { key: "property", header: "Property", sortable: true, filterable: true },
-  { key: "segment", header: "Segment", sortable: true, filterable: true },
-  { key: "rate", header: "Rate", sortable: true, filterable: true },
-  { key: "status", header: "Status", sortable: true, filterable: true },
-  { key: "arrival", header: "Arrival", sortable: true, filterable: true },
-]);
-const bookingRows = JSON.stringify([
-  { id: "RS-3101", guest: "Nora Vale", property: "Harbor", segment: "VIP leisure", rate: "$418", status: "Prepared", arrival: "18:40" },
-  { id: "RS-3102", guest: "Cedar Group", property: "Harbor", segment: "Corporate", rate: "$289", status: "Block review", arrival: "16:00" },
-  { id: "RS-3103", guest: "Kento Mori", property: "Garden", segment: "Suite repeat", rate: "$512", status: "Upsell sent", arrival: "20:10" },
-  { id: "RS-3104", guest: "Amina Hart", property: "West", segment: "Recovery", rate: "$236", status: "Manager note", arrival: "15:20" },
-  { id: "RS-3105", guest: "Luca Stone", property: "Garden", segment: "Wedding", rate: "$344", status: "Amenity hold", arrival: "17:30" },
-  { id: "RS-3106", guest: "Parker Lee", property: "Suites", segment: "Long stay", rate: "$198", status: "Checked in", arrival: "Closed" },
-]);
-const qualityColumns = JSON.stringify([
-  { key: "surface", header: "Surface" },
-  { key: "proof", header: "Proof" },
-]);
-const qualityRows = JSON.stringify([
-  { surface: "Sort", proof: "Reservation metadata enables DataGrid sorting." },
-  { surface: "Filter", proof: "Column metadata enables scoped filter inputs." },
-  { surface: "Pagination", proof: "Page size is constrained to four rows." },
-  { surface: "Theme", proof: "Rose token set remains scoped at the shared layout." },
-]);
+import { bookingColumns, bookingRows } from "../content";
 ---
-
-<BaseLayout title="Booking Table | Rosehall Hospitality">
-  <main class="app-main">
-    <div class="app-page">
-      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
-
-      <section class="page-intro" aria-labelledby="data-table-title">
-        <div>
-          <corva-badge tone="info">Reservation operations</corva-badge>
-          <corva-typography id="data-table-title" as="h1" variant="display">Booking and arrival table</corva-typography>
-          <corva-typography variant="body">
-            Astro renders the route statically while CorvaUI owns dense booking behavior, tokenized states, and accessible record scanning.
-          </corva-typography>
-        </div>
-        <corva-toolbar label="Booking table tools">
-          <corva-button size="sm" variant="secondary">Export CSV</corva-button>
-          <corva-button size="sm">Save view</corva-button>
-        </corva-toolbar>
-      </section>
-
-      <section class="app-two-column app-two-column-wide" aria-label="Booking data">
-        <corva-data-grid
-          caption="Reservation readiness queue"
-          columns={bookingColumns}
-          rows={bookingRows}
-          sortable
-          filterable
-          pageable
-          page-size="4"
-        ></corva-data-grid>
-
-        <div class="app-card-stack">
-          <corva-card eyebrow="Record policy" heading="Arrival confidence">
-            <corva-progress label="Bookings with preference review" value="88"></corva-progress>
-            <corva-alert tone="info" heading="Astro integration">
-              The page passes serialized JSON props to custom elements so hosted static output keeps DataGrid behavior intact.
-            </corva-alert>
-          </corva-card>
-          <corva-data-table caption="Route acceptance checks" columns={qualityColumns} rows={qualityRows}></corva-data-table>
-        </div>
-      </section>
+<BaseLayout title="Bookings | Fieldnote House">
+  <header class="page-hero data-hero">
+    <div>
+      <corva-badge tone="success">September arrival book</corva-badge>
+      <corva-typography as="h1" variant="display">Bookings, with the human details intact.</corva-typography>
+      <corva-typography variant="body">Revenue and readiness share the same record, so the team can scan what is booked and understand what each arrival needs.</corva-typography>
     </div>
-  </main>
+    <div class="data-summary" aria-label="Booking summary"><span><strong>88%</strong> occupancy</span><span><strong>$402</strong> average rate</span><span><strong>91%</strong> prepared</span></div>
+  </header>
+  <section class="grid-shell" aria-label="Fieldnote booking records">
+    <corva-data-grid id="booking-grid" caption="September bookings" sortable filterable pageable page-size="6"></corva-data-grid>
+  </section>
+  <corva-alert tone="info" heading="DataGrid proof">Astro renders the page statically, then assigns typed rows and columns as element properties. CorvaUI owns filtering, sorting, paging, and theme states.</corva-alert>
+  <script define:vars={{ bookingColumns, bookingRows }}>
+    customElements.whenDefined("corva-data-grid").then(() => {
+      Object.assign(document.querySelector("#booking-grid"), { columns: bookingColumns, rows: bookingRows });
+    });
+  </script>
 </BaseLayout>

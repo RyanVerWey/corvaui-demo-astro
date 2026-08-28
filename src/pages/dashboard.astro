@@ -1,124 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const base = import.meta.env.BASE_URL;
-const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Revenue dashboard" }]);
-const revenueData = JSON.stringify([
-  { label: "Transient", value: 44 },
-  { label: "Group", value: 29 },
-  { label: "Events", value: 17 },
-  { label: "Ancillary", value: 10 },
-]);
-const pickupData = JSON.stringify([
-  { label: "Harbor", value: 91 },
-  { label: "Garden", value: 76 },
-  { label: "West", value: 84 },
-  { label: "Suites", value: 68 },
-]);
-const arrivalColumns = JSON.stringify([
-  { key: "reservation", header: "Reservation" },
-  { key: "guest", header: "Guest" },
-  { key: "property", header: "Property" },
-  { key: "status", header: "Status" },
-]);
-const arrivalRows = JSON.stringify([
-  { reservation: "RS-1842", guest: "Nora Vale", property: "Harbor", status: "VIP prepared" },
-  { reservation: "RS-1843", guest: "Kento Mori", property: "Garden", status: "Suite upsell" },
-  { reservation: "RS-1844", guest: "Amina Hart", property: "West", status: "Recovery note" },
-  { reservation: "RS-1845", guest: "Cedar Group", property: "Harbor", status: "Room block" },
-]);
-const boardColumns = JSON.stringify([
-  {
-    id: "pickup",
-    title: "Revenue",
-    items: [
-      { id: "r1", title: "Harbor compression rate", meta: "Approve by 11:00" },
-      { id: "r2", title: "Garden group pickup gap", meta: "18 rooms" },
-    ],
-  },
-  {
-    id: "arrival",
-    title: "Arrival",
-    items: [
-      { id: "a1", title: "VIP amenity list", meta: "Front office" },
-      { id: "a2", title: "Suite upsell offers", meta: "Reservations" },
-    ],
-  },
-  {
-    id: "event",
-    title: "Events",
-    items: [
-      { id: "e1", title: "Ballroom reset", meta: "18:00" },
-      { id: "e2", title: "Deposit variance", meta: "Finance" },
-    ],
-  },
-]);
+import { revenueData, occupancyData, reportColumns, reportRows } from "../content";
 ---
-
-<BaseLayout title="Revenue Dashboard | Rosehall Hospitality">
-  <main class="app-main">
-    <div class="app-page">
-      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
-
-      <section class="page-intro" aria-labelledby="dashboard-title">
-        <div>
-          <corva-badge tone="info">Revenue command</corva-badge>
-          <corva-typography id="dashboard-title" as="h1" variant="display">Tonight's hotel control room</corva-typography>
-          <corva-typography variant="body">
-            Revenue managers and front-office leads can balance rate moves, arrival readiness, and event commitments before the lobby gets busy.
-          </corva-typography>
-        </div>
-        <corva-toolbar label="Dashboard tools">
-          <corva-button size="sm">Refresh</corva-button>
-          <corva-button size="sm" variant="secondary">Export</corva-button>
-        </corva-toolbar>
-      </section>
-
-      <section class="metric-strip" aria-label="Daily metrics">
-        <corva-card eyebrow="Occupancy" heading="84% portfolio">
-          <corva-progress label="Pickup against forecast" value="84"></corva-progress>
-        </corva-card>
-        <corva-card eyebrow="ADR" heading="$268">
-          <corva-progress label="Rate plan confidence" value="77"></corva-progress>
-        </corva-card>
-        <corva-card eyebrow="Arrivals" heading="41 VIP">
-          <corva-progress label="Amenity readiness" value="92"></corva-progress>
-        </corva-card>
-      </section>
-
-      <section class="app-two-column app-two-column-wide" aria-label="Charts and status">
-        <corva-card eyebrow="Revenue" heading="Demand mix">
-          <corva-chart label="Booked revenue mix" data={revenueData}></corva-chart>
-        </corva-card>
-        <corva-card eyebrow="Portfolio" heading="Pickup health">
-          <corva-chart label="Pickup by property" data={pickupData}></corva-chart>
-        </corva-card>
-      </section>
-
-      <section class="app-section" aria-labelledby="workflow-title">
-        <div class="app-section-header">
-          <div>
-            <corva-typography id="workflow-title" as="h2" variant="title">Operating flow</corva-typography>
-            <corva-typography variant="body">Rate decisions, guest preparation, and event work share the rose token surface.</corva-typography>
-          </div>
-          <corva-tabs
-            label="Dashboard window"
-            items='[{"id":"tonight","label":"Tonight"},{"id":"week","label":"Week"},{"id":"month","label":"Month"}]'
-            active-id="tonight"
-          ></corva-tabs>
-        </div>
-        <div class="app-two-column app-two-column-wide">
-          <corva-card eyebrow="Board" heading="Work movement">
-            <corva-workflow-board columns={boardColumns}></corva-workflow-board>
-          </corva-card>
-          <div class="app-card-stack">
-            <corva-data-table caption="Priority arrivals" columns={arrivalColumns} rows={arrivalRows}></corva-data-table>
-            <corva-alert tone="warning" heading="Event watch">
-              Ballroom BEO changed after final counts. Review staffing and linen counts before 14:00.
-            </corva-alert>
-          </div>
-        </div>
-      </section>
+<BaseLayout title="Reports | Fieldnote House">
+  <header class="page-hero reports-hero">
+    <div>
+      <corva-badge tone="info">September outlook</corva-badge>
+      <corva-typography as="h1" variant="display">A report for protecting the experience.</corva-typography>
+      <corva-typography variant="body">Demand, rate, guest readiness, and event commitments stay close enough to support calm operating decisions.</corva-typography>
     </div>
-  </main>
+    <corva-tabs label="Report period" active-id="month" items='[{"id":"week","label":"Week"},{"id":"month","label":"Month"},{"id":"quarter","label":"Quarter"}]'></corva-tabs>
+  </header>
+
+  <section class="metric-ribbon" aria-label="Hospitality metrics">
+    <article><span>Occupancy</span><strong>88%</strong><small>+6 pts vs. plan</small></article>
+    <article><span>Average rate</span><strong>$402</strong><small>+$28 year over year</small></article>
+    <article><span>Retreat revenue</span><strong>$98K</strong><small>September on books</small></article>
+    <article><span>Arrival ready</span><strong>91%</strong><small>31 of 34 arrivals</small></article>
+  </section>
+
+  <section class="chart-layout">
+    <corva-paper><corva-chart id="revenue-chart" label="Revenue mix"></corva-chart></corva-paper>
+    <corva-paper><corva-chart id="occupancy-chart" label="Forward occupancy"></corva-chart></corva-paper>
+  </section>
+
+  <section class="report-layout" aria-labelledby="outlook-title">
+    <div>
+      <div class="section-heading compact"><corva-typography id="outlook-title" as="h2" variant="title">Commercial outlook</corva-typography><p>Current pace, rate, and booked revenue.</p></div>
+      <corva-data-table id="report-table" caption="Fieldnote commercial outlook"></corva-data-table>
+    </div>
+    <div class="report-aside">
+      <corva-card eyebrow="Recommended action" heading="Hold October weekends">Current pace supports a measured rate lift without compromising direct-booking conversion.</corva-card>
+      <corva-progress label="Q4 revenue target" value="74"></corva-progress>
+      <corva-alert tone="warning" heading="One production decision">Morrow Studio rooming list is due before tomorrow's kitchen order.</corva-alert>
+    </div>
+  </section>
+
+  <script define:vars={{ revenueData, occupancyData, reportColumns, reportRows }}>
+    Promise.all([
+      customElements.whenDefined("corva-chart"),
+      customElements.whenDefined("corva-data-table"),
+    ]).then(() => {
+      Object.assign(document.querySelector("#revenue-chart"), { data: revenueData });
+      Object.assign(document.querySelector("#occupancy-chart"), { data: occupancyData });
+      Object.assign(document.querySelector("#report-table"), { columns: reportColumns, rows: reportRows });
+    });
+  </script>
 </BaseLayout>
