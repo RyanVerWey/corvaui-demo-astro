@@ -5,7 +5,7 @@ const base = import.meta.env.BASE_URL;
 <BaseLayout title="Fieldnote House | Stay, Gather, Make">
   <section class="home-hero" aria-labelledby="home-title">
     <figure class="hero-photo">
-      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1700&q=86" alt="Warm timber-and-stone living room opening onto a quiet woodland landscape" />
+      <img src={`${base}images/fieldnote-living.jpg`} alt="Warm timber-and-stone living room opening onto a quiet woodland landscape" width="1800" height="1200" fetchpriority="high" />
     </figure>
     <div class="hero-copy">
       <corva-badge tone="info">Catskill foothills · 42.1948° N</corva-badge>
@@ -30,7 +30,10 @@ const base = import.meta.env.BASE_URL;
 
   <section class="experience-grid" aria-label="Fieldnote experiences">
     <article class="experience-copy"><small>Stay</small><h2>Wake slowly.</h2><p>Natural light, wool, oak, and a breakfast that follows the season.</p></article>
-    <figure><img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=84" alt="Calm guest room with pale wood, linen, and garden light" /></figure>
+    <div class="experience-photos">
+      <figure><img src={`${base}images/fieldnote-exterior.jpg`} alt="Black timber retreat opening from a broad lawn beneath mature trees" width="1400" height="933" loading="lazy" /></figure>
+      <figure><img src={`${base}images/fieldnote-dining.jpg`} alt="Shared dining table beside tall windows overlooking the woods" width="1400" height="2100" loading="lazy" /></figure>
+    </div>
     <article class="experience-copy dark"><small>Gather</small><h2>Bring the whole idea.</h2><p>Workshops, offsites, dinners, and celebrations with a producer who understands the shape of the day.</p></article>
   </section>
 

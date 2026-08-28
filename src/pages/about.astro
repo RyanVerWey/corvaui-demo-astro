@@ -10,7 +10,10 @@ const base = import.meta.env.BASE_URL;
       <corva-typography as="h1" variant="display">A room, a house, or the whole horizon.</corva-typography>
       <corva-typography variant="body">Choose the amount of privacy, hosting, and production your stay needs. The house remains attentive at every scale.</corva-typography>
     </div>
-    <corva-card eyebrow="Fieldnote standard" heading="Breakfast, studio, landscape">Every stay includes the shared table, trail access, and a host who knows why you came.</corva-card>
+    <figure class="page-photo">
+      <img src={`${base}images/fieldnote-green-room.jpg`} alt="Green guest room with crisp white bedding and windows facing the woods" width="1400" height="933" loading="lazy" />
+      <figcaption><span>Fieldnote standard</span><strong>Breakfast, studio, landscape.</strong></figcaption>
+    </figure>
   </header>
 
   <section class="table-section" aria-labelledby="compare-title">
@@ -25,6 +28,11 @@ const base = import.meta.env.BASE_URL;
     <article><span>Field Room</span><h2>Private, with a table nearby.</h2><p>For a solo reset or a weekend for two. Join the house when you want to.</p></article>
     <article><span>House Stay</span><h2>Your people, held together.</h2><p>Eight guests, a private dining rhythm, and enough room for conversation to change pace.</p></article>
     <article><span>Full Retreat</span><h2>The whole place in service.</h2><p>Rooms, studio, table, landscape, and a producer shaping every transition.</p></article>
+  </section>
+
+  <section class="stay-gallery" aria-label="Fieldnote rooms and shared spaces">
+    <figure><img src={`${base}images/fieldnote-guest-room.jpg`} alt="Warm guest room prepared with layered bedding and bedside light" width="1400" height="933" loading="lazy" /><figcaption>Guest rooms prepared around arrival notes.</figcaption></figure>
+    <figure><img src={`${base}images/fieldnote-dining.jpg`} alt="Long-windowed dining room with a table facing the winter woods" width="1400" height="2100" loading="lazy" /><figcaption>The shared table, reset for every gathering.</figcaption></figure>
   </section>
 
   <section class="principle-band">
