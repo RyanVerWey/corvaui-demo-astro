@@ -2,118 +2,76 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
-  { label: "Work orders" },
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Event intake" }]);
+const eventTypes = JSON.stringify([
+  { label: "Corporate retreat", value: "retreat" },
+  { label: "Wedding", value: "wedding" },
+  { label: "Board dinner", value: "dinner" },
+  { label: "Conference", value: "conference" },
 ]);
-
-const tradeOptions = JSON.stringify([
-  { label: "HVAC", value: "hvac" },
-  { label: "Electrical", value: "electrical" },
-  { label: "Facilities", value: "facilities" },
-  { label: "Specialty contractor", value: "specialty" },
-]);
-
 const priorityOptions = JSON.stringify([
-  { label: "Emergency", value: "emergency", description: "Immediate dispatch and manager alert." },
-  { label: "Same day", value: "same-day", description: "Protect current business day SLA." },
-  { label: "Scheduled", value: "scheduled", description: "Book into next available service window." },
+  { label: "Standard", value: "standard", description: "Normal event manager review." },
+  { label: "Premium", value: "premium", description: "Guest-experience review and revenue approval." },
+  { label: "Executive", value: "executive", description: "GM visibility and daily readiness check." },
 ]);
-
-const siteOptions = JSON.stringify([
-  "Beacon Retail 14",
-  "Cedarline West Campus",
-  "Prairie Foods Dock 3",
-  "Marsh Labs Annex",
-]);
-
-const intakeSteps = JSON.stringify([
-  { id: "request", label: "Request", description: "Capture account, site, and issue." },
-  { id: "schedule", label: "Schedule", description: "Set trade, priority, and arrival window." },
-  { id: "dispatch", label: "Dispatch", description: "Confirm crew notes and proof needs." },
+const roomOptions = JSON.stringify(["Harbor Ballroom", "Garden Terrace", "Library Suite", "West Conservatory"]);
+const eventSteps = JSON.stringify([
+  { id: "request", label: "Request", description: "Capture event scope and guest profile." },
+  { id: "plan", label: "Plan", description: "Set rooms, deposits, menus, and staffing." },
+  { id: "execute", label: "Execute", description: "Lock BEO and service recovery plan." },
 ]);
 ---
 
-<BaseLayout title="Work Order Form | CorvaUI Field Services">
+<BaseLayout title="Event Intake | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
-      <section class="page-intro" aria-labelledby="work-order-title">
+      <section class="page-intro" aria-labelledby="event-title">
         <div>
-          <corva-badge tone="success">Intake</corva-badge>
-          <corva-typography id="work-order-title" as="h1" variant="display">Create work order</corva-typography>
+          <corva-badge tone="success">Event intake</corva-badge>
+          <corva-typography id="event-title" as="h1" variant="display">Create a banquet-ready event.</corva-typography>
           <corva-typography variant="body">
-            CorvaUI uses CorvaUI controls for real customer intake: validation hints, dates, selections, upload, and closeout requirements.
+            Sales, events, front office, culinary, and finance get the same event record before the guest promise becomes operational risk.
           </corva-typography>
         </div>
-        <corva-card eyebrow="Progress" heading="Request detail">
-          <corva-stepper steps={intakeSteps} active-index="0"></corva-stepper>
+        <corva-card eyebrow="Progress" heading="Event detail">
+          <corva-stepper steps={eventSteps} active-index="1"></corva-stepper>
         </corva-card>
       </section>
 
-      <section class="app-two-column app-two-column-wide" aria-label="Work order form">
-        <corva-card eyebrow="Form" heading="Service request">
+      <section class="app-two-column app-two-column-wide" aria-label="Event form">
+        <corva-card eyebrow="Form" heading="Event request">
           <form class="app-form-grid">
-            <corva-autocomplete
-              label="Site"
-              options={siteOptions}
-              value="Beacon Retail 14"
-              hint="Start with customer or site name."
-            ></corva-autocomplete>
-            <corva-text-field
-              label="Requester"
-              name="requester"
-              value="Dana Ortiz"
-              hint="Person who approved service."
-            ></corva-text-field>
-            <corva-select label="Trade" name="trade" options={tradeOptions} value="hvac"></corva-select>
-            <corva-date-picker label="Requested date" name="requested-date" value="2026-06-16"></corva-date-picker>
-            <corva-time-picker label="Arrival window" name="arrival-window" value="09:30"></corva-time-picker>
-            <corva-text-field
-              label="Purchase order"
-              name="purchase-order"
-              placeholder="PO or approval code"
-              error="Required for premium accounts before dispatch."
-            ></corva-text-field>
+            <corva-autocomplete label="Event space" options={roomOptions} value="Harbor Ballroom"></corva-autocomplete>
+            <corva-text-field label="Planner" name="planner" value="Avery Stone"></corva-text-field>
+            <corva-select label="Event type" name="event-type" options={eventTypes} value="retreat"></corva-select>
+            <corva-date-picker label="Event date" name="event-date" value="2026-10-12"></corva-date-picker>
+            <corva-time-picker label="Room ready time" name="room-ready" value="14:30"></corva-time-picker>
+            <corva-number-field label="Expected guests" name="guests" min="1" max="900" value="184"></corva-number-field>
             <div class="form-wide">
-              <corva-radio-group
-                label="Priority"
-                name="priority"
-                options={priorityOptions}
-                value="same-day"
-              ></corva-radio-group>
+              <corva-radio-group label="Service tier" name="tier" options={priorityOptions} value="premium"></corva-radio-group>
             </div>
             <div class="form-wide">
               <corva-textarea
-                label="Issue description"
-                name="issue"
+                label="Event notes"
+                name="notes"
                 rows="5"
-                value="Customer reports intermittent rooftop unit shutdown and warm air in the west sales floor."
+                value="Two-day executive retreat with welcome reception, morning keynote, and private dinner. Gluten-free menu count still pending."
               ></corva-textarea>
             </div>
-            <corva-text-field
-              label="Upload photo"
-              name="photo"
-              type="file"
-              hint="Attach site image, quote, or approval document."
-            ></corva-text-field>
             <corva-select
-              label="Closeout proof"
-              name="proof"
-              options='[{"label":"Photo and signature","value":"photo-signature"},{"label":"Technician notes only","value":"notes"},{"label":"Manager approval","value":"approval"}]'
-              value="photo-signature"
+              label="Deposit status"
+              name="deposit"
+              options='[{"label":"Paid","value":"paid"},{"label":"Due","value":"due"},{"label":"Variance review","value":"variance"}]'
+              value="variance"
             ></corva-select>
+            <corva-text-field label="BEO attachment" name="beo" type="file" hint="Attach current banquet event order."></corva-text-field>
             <div class="form-wide">
-              <corva-checkbox
-                label="Notify account manager"
-                description="Send intake summary after the work order is saved."
-                checked
-              ></corva-checkbox>
+              <corva-checkbox label="Notify culinary and front office" description="Send event summary after save." checked></corva-checkbox>
             </div>
             <div class="form-wide app-actions">
-              <corva-button type="submit">Save work order</corva-button>
+              <corva-button type="submit">Save event</corva-button>
               <corva-button type="reset" variant="secondary">Clear draft</corva-button>
             </div>
           </form>
@@ -121,13 +79,13 @@ const intakeSteps = JSON.stringify([
 
         <div class="app-card-stack">
           <corva-alert tone="info" heading="Validation smoke">
-            PO shows an error state, date and time controls render independently, and the file field stays inside the responsive form grid.
+            File, date, time, radio, select, textarea, and checkbox controls stay in one responsive Astro form.
           </corva-alert>
-          <corva-card eyebrow="Dispatch notes" heading="Recommended crew">
+          <corva-card eyebrow="Readiness" heading="Operational notes">
             <div class="record-list">
-              <span><strong>Team 7</strong> has HVAC certification and one open slot near the site.</span>
-              <span><strong>Parts</strong> filter set: rooftop unit sensor kit, belt pack, access reader.</span>
-              <span><strong>Customer tier</strong> premium, same-day communication expected.</span>
+              <span><strong>Rooms</strong> Harbor Ballroom plus Library Suite hold space.</span>
+              <span><strong>Culinary</strong> Menu count variance is the current blocker.</span>
+              <span><strong>Finance</strong> Deposit variance requires review before final BEO lock.</span>
             </div>
           </corva-card>
         </div>

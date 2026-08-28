@@ -2,15 +2,15 @@
 import "@corvaui/tokens/css";
 import "../styles.css";
 
-const { title = "CorvaUI Operations" } = Astro.props;
+const { title = "Rosehall Hospitality" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname.replace(/\/$/, "");
 const navItems = [
   { href: base, label: "Home", path: base.replace(/\/$/, "") },
-  { href: `${base}dashboard/`, label: "Dashboard", path: `${base}dashboard` },
-  { href: `${base}work-orders/`, label: "Work orders", path: `${base}work-orders` },
-  { href: `${base}customers/`, label: "Customers", path: `${base}customers` },
-  { href: `${base}data-table/`, label: "Data table", path: `${base}data-table` },
+  { href: `${base}dashboard/`, label: "Revenue dashboard", path: `${base}dashboard` },
+  { href: `${base}work-orders/`, label: "Event intake", path: `${base}work-orders` },
+  { href: `${base}customers/`, label: "Guests", path: `${base}customers` },
+  { href: `${base}data-table/`, label: "Booking table", path: `${base}data-table` },
   { href: `${base}settings/`, label: "Settings", path: `${base}settings` },
   { href: `${base}about/`, label: "Proof", path: `${base}about` },
 ];
@@ -22,13 +22,13 @@ const navItems = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="CorvaUI Operations demo site built with Astro routing, CorvaUI web components, and rose tokens."
+      content="Rosehall Hospitality demo site built with Astro routing, CorvaUI web components, and rose tokens."
     />
     <title>{title}</title>
   </head>
   <body>
     <div class="app-shell">
-      <corva-app-bar heading="CorvaUI Operations">
+      <corva-app-bar heading="Rosehall Hospitality">
         <corva-badge tone="info">CorvaUI Astro</corva-badge>
         <nav class="app-nav" slot="navigation" aria-label="Primary">
           {
@@ -92,7 +92,7 @@ const navItems = [
       import "@corvaui/web-components/components/corva-typography.js";
       import "@corvaui/web-components/components/corva-workflow-board.js";
 
-      const storageKey = "apexui-demo-theme";
+      const storageKey = "rosehall-theme";
       const root = document.documentElement;
       const switchEl = document.querySelector("#theme-switch");
 
@@ -113,7 +113,7 @@ const navItems = [
       };
 
       const applyTheme = (theme) => {
-        root.dataset.apexTheme = theme;
+        root.dataset.corvaTheme = theme;
         if (switchEl) {
           switchEl.checked = theme === "rose-dark";
         }

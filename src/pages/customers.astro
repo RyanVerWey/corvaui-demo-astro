@@ -2,137 +2,104 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
-  { label: "Customers" },
-]);
-
-const customerColumns = JSON.stringify([
-  { key: "account", header: "Account" },
-  { key: "stage", header: "Stage" },
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Guests" }]);
+const guestColumns = JSON.stringify([
+  { key: "guest", header: "Guest" },
+  { key: "segment", header: "Segment" },
   { key: "owner", header: "Owner" },
-  { key: "value", header: "Value" },
+  { key: "value", header: "Stay value" },
 ]);
-
-const customerRows = JSON.stringify([
-  { account: "Cedarline Health", stage: "Renewal", owner: "Riley Moss", value: "$420k" },
-  { account: "Beacon Retail", stage: "Expansion", owner: "Inez Cruz", value: "$315k" },
-  { account: "Prairie Foods", stage: "Onboarding", owner: "Mara Chen", value: "$188k" },
-  { account: "Marsh Labs", stage: "Proposal", owner: "Theo Grant", value: "$96k" },
+const guestRows = JSON.stringify([
+  { guest: "Nora Vale", segment: "VIP leisure", owner: "Mira Chen", value: "$8.4k" },
+  { guest: "Cedar Group", segment: "Corporate group", owner: "Eli Hart", value: "$42k" },
+  { guest: "Kento Mori", segment: "Suite repeat", owner: "Samira Wells", value: "$12.1k" },
+  { guest: "Amina Hart", segment: "Recovery", owner: "Mira Chen", value: "$2.8k" },
 ]);
-
 const boardColumns = JSON.stringify([
   {
-    id: "prospect",
-    title: "Prospect",
+    id: "arriving",
+    title: "Arriving",
     items: [
-      { id: "p1", title: "Marsh Labs", meta: "$96k" },
-      { id: "p2", title: "Juniper Campus", meta: "$74k" },
+      { id: "g1", title: "Nora Vale", meta: "VIP amenity" },
+      { id: "g2", title: "Cedar Group", meta: "Room block" },
     ],
   },
   {
-    id: "active",
-    title: "Active",
+    id: "inhouse",
+    title: "In house",
     items: [
-      { id: "a1", title: "Prairie Foods", meta: "Onboarding" },
-      { id: "a2", title: "Beacon Retail", meta: "Expansion" },
+      { id: "g3", title: "Amina Hart", meta: "Recovery note" },
+      { id: "g4", title: "Kento Mori", meta: "Suite upsell" },
     ],
   },
   {
-    id: "retained",
-    title: "Retained",
+    id: "followup",
+    title: "Follow-up",
     items: [
-      { id: "r1", title: "Cedarline Health", meta: "Renewal" },
-      { id: "r2", title: "Harbor Hotels", meta: "QBR" },
+      { id: "g5", title: "Spa credit email", meta: "Tomorrow" },
+      { id: "g6", title: "Group rebook call", meta: "Friday" },
     ],
   },
 ]);
-
-const siteTree = JSON.stringify([
+const preferenceTree = JSON.stringify([
   {
-    id: "cedarline",
-    label: "Cedarline Health",
+    id: "nora",
+    label: "Nora Vale",
     children: [
-      { id: "west", label: "West campus" },
-      { id: "north", label: "North clinic" },
-      { id: "central", label: "Central lab" },
+      { id: "room", label: "High floor, harbor view" },
+      { id: "dining", label: "Late dinner, quiet table" },
+      { id: "amenity", label: "Sparkling water, citrus" },
     ],
   },
   {
-    id: "beacon",
-    label: "Beacon Retail",
+    id: "cedar",
+    label: "Cedar Group",
     children: [
-      { id: "store-14", label: "Store 14" },
-      { id: "store-28", label: "Store 28" },
+      { id: "block", label: "18 rooms" },
+      { id: "meeting", label: "Boardroom breakfast" },
     ],
   },
 ]);
 ---
 
-<BaseLayout title="Customer Records | CorvaUI Field Services">
+<BaseLayout title="Guest Records | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
-      <section class="page-intro" aria-labelledby="customers-title">
+      <section class="page-intro" aria-labelledby="guests-title">
         <div>
-          <corva-badge tone="info">Pipeline</corva-badge>
-          <corva-typography id="customers-title" as="h1" variant="display">Customer records</corva-typography>
+          <corva-badge tone="info">Guest records</corva-badge>
+          <corva-typography id="guests-title" as="h1" variant="display">Guests, groups, and preference memory.</corva-typography>
           <corva-typography variant="body">
-            CorvaUI account teams can scan commercial relationships, site trees, open opportunities, and service health without leaving the routed app.
+            Front office and guest experience teams can scan arrival value, loyalty context, preferences, and recovery work before check-in.
           </corva-typography>
         </div>
-        <corva-search-form label="Search customer records" placeholder="Account, site, contact"></corva-search-form>
+        <corva-search-form label="Search guest records" placeholder="Guest, group, property, owner"></corva-search-form>
       </section>
 
-      <section class="app-two-column app-two-column-wide" aria-label="Pipeline board and account detail">
-        <corva-card eyebrow="Pipeline" heading="Revenue movement">
+      <section class="app-two-column app-two-column-wide" aria-label="Guest board and detail">
+        <corva-card eyebrow="Experience board" heading="Guest movement">
           <corva-workflow-board columns={boardColumns}></corva-workflow-board>
         </corva-card>
 
-        <corva-card eyebrow="Selected account" heading="Cedarline Health">
+        <corva-card eyebrow="Selected guest" heading="Nora Vale">
           <div class="record-list">
-            <span><strong>Tier</strong> premium regional healthcare network</span>
-            <span><strong>Primary contact</strong> Amara Lewis, facilities director</span>
-            <span><strong>Open risk</strong> renewal depends on imaging wing uptime report</span>
+            <span><strong>Segment</strong> VIP leisure, third Rosehall stay</span>
+            <span><strong>Preference</strong> Harbor view, late dinner, citrus amenity</span>
+            <span><strong>Open promise</strong> Spa credit carried from prior recovery note</span>
           </div>
-          <corva-divider label="Health"></corva-divider>
-          <corva-progress label="Renewal confidence" value="86"></corva-progress>
-          <corva-rating label="Service sentiment" value="5"></corva-rating>
+          <corva-divider label="Readiness"></corva-divider>
+          <corva-progress label="Arrival preparation" value="92"></corva-progress>
+          <corva-rating label="Loyalty strength" value="5"></corva-rating>
         </corva-card>
       </section>
 
-      <section class="app-two-column" aria-label="Customer records">
-        <corva-data-grid caption="Account grid" columns={customerColumns} rows={customerRows}></corva-data-grid>
-        <corva-card eyebrow="Sites" heading="Account hierarchy">
-          <corva-tree-view label="Customer site tree" items={siteTree}></corva-tree-view>
+      <section class="app-two-column" aria-label="Guest records">
+        <corva-data-grid caption="Guest value grid" columns={guestColumns} rows={guestRows}></corva-data-grid>
+        <corva-card eyebrow="Preferences" heading="Guest memory tree">
+          <corva-tree-view label="Guest preference tree" items={preferenceTree}></corva-tree-view>
         </corva-card>
-      </section>
-
-      <section class="app-section" aria-labelledby="activity-title">
-        <div class="app-section-header">
-          <div>
-            <corva-typography id="activity-title" as="h2" variant="title">Latest account activity</corva-typography>
-            <corva-typography variant="body">List and detail patterns round out the customer workspace.</corva-typography>
-          </div>
-          <corva-toggle-group
-            label="Record view"
-            options='[{"label":"All","value":"all"},{"label":"Open","value":"open"},{"label":"At risk","value":"risk"}]'
-            value="open"
-          ></corva-toggle-group>
-        </div>
-        <div class="feature-grid">
-          <corva-card eyebrow="Today" heading="Beacon Retail expansion">
-            Three new stores added to the preventive maintenance proposal.
-          </corva-card>
-          <corva-card eyebrow="Yesterday" heading="Prairie Foods onboarding">
-            Site access contacts confirmed for cold-chain equipment audit.
-          </corva-card>
-          <corva-card eyebrow="Friday" heading="Cedarline renewal proof">
-            Uptime export and closeout packet queued for quarterly review.
-          </corva-card>
-        </div>
       </section>
     </div>
   </main>

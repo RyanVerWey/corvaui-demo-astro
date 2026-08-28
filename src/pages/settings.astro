@@ -2,38 +2,30 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
-  { label: "Settings" },
-]);
-
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Settings" }]);
 const localeOptions = JSON.stringify([
   { label: "English, United States", value: "en-US" },
-  { label: "English, Canada", value: "en-CA" },
-  { label: "Spanish, United States", value: "es-US" },
+  { label: "French", value: "fr" },
+  { label: "Japanese", value: "ja" },
 ]);
-
 const timezoneOptions = JSON.stringify([
   { label: "Eastern", value: "America/New_York" },
   { label: "Central", value: "America/Chicago" },
   { label: "Mountain", value: "America/Denver" },
   { label: "Pacific", value: "America/Los_Angeles" },
 ]);
-
 const themeOptions = JSON.stringify([
   { label: "Rose light", value: "rose-light", description: "Default assigned theme for the demo." },
   { label: "Rose dark", value: "rose-dark", description: "Readable dark counterpart for smoke testing." },
 ]);
-
 const tabs = JSON.stringify([
   { id: "profile", label: "Profile" },
-  { id: "workspace", label: "Workspace" },
+  { id: "property", label: "Property" },
   { id: "alerts", label: "Alerts" },
 ]);
 ---
 
-<BaseLayout title="Settings | CorvaUI Field Services">
+<BaseLayout title="Settings | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
@@ -41,28 +33,23 @@ const tabs = JSON.stringify([
       <section class="page-intro" aria-labelledby="settings-title">
         <div>
           <corva-badge tone="info">Account</corva-badge>
-          <corva-typography id="settings-title" as="h1" variant="display">Settings and account</corva-typography>
+          <corva-typography id="settings-title" as="h1" variant="display">Settings for hospitality teams</corva-typography>
           <corva-typography variant="body">
-            CorvaUI preferences, locale, notification rules, and theme controls demonstrate a compact application settings surface.
+            Preferences, locale, notification rules, and theme controls demonstrate a compact settings surface for revenue and guest operations.
           </corva-typography>
         </div>
-        <corva-tabs label="Settings sections" items={tabs} active-id="workspace"></corva-tabs>
+        <corva-tabs label="Settings sections" items={tabs} active-id="property"></corva-tabs>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Settings forms">
-        <corva-card eyebrow="Profile" heading="Operator identity">
+        <corva-card eyebrow="Profile" heading="Revenue operator">
           <form class="app-form-grid">
-            <corva-text-field label="Name" name="name" value="Ryan VerWey"></corva-text-field>
-            <corva-text-field label="Email" name="email" type="email" value="ops@northstar.example"></corva-text-field>
+            <corva-text-field label="Name" name="name" value="Mira Chen"></corva-text-field>
+            <corva-text-field label="Email" name="email" type="email" value="mira@rosehall.example"></corva-text-field>
             <corva-select label="Locale" name="locale" options={localeOptions} value="en-US"></corva-select>
             <corva-select label="Time zone" name="timezone" options={timezoneOptions} value="America/New_York"></corva-select>
             <div class="form-wide">
-              <corva-radio-group
-                label="Theme preference"
-                name="theme"
-                options={themeOptions}
-                value="rose-light"
-              ></corva-radio-group>
+              <corva-radio-group label="Theme preference" name="theme" options={themeOptions} value="rose-light"></corva-radio-group>
             </div>
             <div class="form-wide app-actions">
               <corva-button type="submit">Save settings</corva-button>
@@ -72,40 +59,19 @@ const tabs = JSON.stringify([
         </corva-card>
 
         <div class="app-card-stack">
-          <corva-card eyebrow="Workspace" heading="Dispatch defaults">
+          <corva-card eyebrow="Property" heading="Operating defaults">
             <div class="record-list">
-              <corva-switch label="Auto-assign same-day HVAC tickets" checked></corva-switch>
-              <corva-switch label="Require closeout photo on premium accounts" checked></corva-switch>
-              <corva-switch label="Hold invoices missing customer signature"></corva-switch>
+              <corva-switch label="Auto-flag VIP preference gaps" checked></corva-switch>
+              <corva-switch label="Require BEO approval before event lock" checked></corva-switch>
+              <corva-switch label="Hold rate changes when group pickup is stale"></corva-switch>
             </div>
           </corva-card>
           <corva-card eyebrow="Alerts" heading="Notification rules">
             <div class="record-list">
-              <corva-checkbox label="SLA risk email" description="Send when a priority ticket has less than one hour left." checked></corva-checkbox>
-              <corva-checkbox label="Daily closeout digest" description="Summarize approvals ready for billing." checked></corva-checkbox>
-              <corva-checkbox label="Pipeline renewal warning" description="Notify account owners before renewal risk rises."></corva-checkbox>
+              <corva-checkbox label="Arrival readiness email" description="Send when VIP preparation falls below target." checked></corva-checkbox>
+              <corva-checkbox label="Event variance digest" description="Summarize deposits, menu counts, and room setup changes." checked></corva-checkbox>
+              <corva-checkbox label="Rate compression warning" description="Notify revenue leads before sellout windows."></corva-checkbox>
             </div>
-          </corva-card>
-        </div>
-      </section>
-
-      <section class="app-section" aria-labelledby="access-title">
-        <div class="app-section-header">
-          <div>
-            <corva-typography id="access-title" as="h2" variant="title">Access controls</corva-typography>
-            <corva-typography variant="body">Representative controls stay readable in rose-light and rose-dark.</corva-typography>
-          </div>
-          <corva-badge tone="success">Synced</corva-badge>
-        </div>
-        <div class="feature-grid">
-          <corva-card eyebrow="Role" heading="Dispatch manager">
-            Can edit routing rules, schedule crews, and approve emergency escalation.
-          </corva-card>
-          <corva-card eyebrow="Package" heading="Commercial operations">
-            Includes customer records, pipeline views, SLA reporting, and proof packets.
-          </corva-card>
-          <corva-card eyebrow="Security" heading="Two-step review">
-            High-value invoice changes require a second account lead before billing.
           </corva-card>
         </div>
       </section>

@@ -2,79 +2,70 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
-  { label: "Dashboard" },
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Revenue dashboard" }]);
+const revenueData = JSON.stringify([
+  { label: "Transient", value: 44 },
+  { label: "Group", value: 29 },
+  { label: "Events", value: 17 },
+  { label: "Ancillary", value: 10 },
 ]);
-
-const chartData = JSON.stringify([
-  { label: "On site", value: 32 },
-  { label: "Queued", value: 21 },
-  { label: "Parts hold", value: 9 },
-  { label: "Closed", value: 64 },
+const pickupData = JSON.stringify([
+  { label: "Harbor", value: 91 },
+  { label: "Garden", value: 76 },
+  { label: "West", value: 84 },
+  { label: "Suites", value: 68 },
 ]);
-
-const backlogData = JSON.stringify([
-  { label: "Critical", value: 8 },
-  { label: "High", value: 19 },
-  { label: "Normal", value: 47 },
-  { label: "Low", value: 12 },
+const arrivalColumns = JSON.stringify([
+  { key: "reservation", header: "Reservation" },
+  { key: "guest", header: "Guest" },
+  { key: "property", header: "Property" },
+  { key: "status", header: "Status" },
 ]);
-
-const queueColumns = JSON.stringify([
-  { key: "ticket", header: "Ticket" },
-  { key: "site", header: "Site" },
-  { key: "owner", header: "Owner" },
-  { key: "sla", header: "SLA" },
+const arrivalRows = JSON.stringify([
+  { reservation: "RS-1842", guest: "Nora Vale", property: "Harbor", status: "VIP prepared" },
+  { reservation: "RS-1843", guest: "Kento Mori", property: "Garden", status: "Suite upsell" },
+  { reservation: "RS-1844", guest: "Amina Hart", property: "West", status: "Recovery note" },
+  { reservation: "RS-1845", guest: "Cedar Group", property: "Harbor", status: "Room block" },
 ]);
-
-const queueRows = JSON.stringify([
-  { ticket: "WO-1842", site: "Beacon Retail 14", owner: "Mara Chen", sla: "42 min" },
-  { ticket: "WO-1843", site: "Cedarline West", owner: "Owen Patel", sla: "1 hr 15 min" },
-  { ticket: "WO-1844", site: "Prairie Foods Dock 3", owner: "Inez Cruz", sla: "2 hr 05 min" },
-  { ticket: "WO-1845", site: "Marsh Labs", owner: "Unassigned", sla: "3 hr 20 min" },
-]);
-
 const boardColumns = JSON.stringify([
   {
-    id: "new",
-    title: "New",
+    id: "pickup",
+    title: "Revenue",
     items: [
-      { id: "n1", title: "Leak report, suite 210", meta: "HVAC" },
-      { id: "n2", title: "Generator test failed", meta: "Electrical" },
+      { id: "r1", title: "Harbor compression rate", meta: "Approve by 11:00" },
+      { id: "r2", title: "Garden group pickup gap", meta: "18 rooms" },
     ],
   },
   {
-    id: "routed",
-    title: "Routed",
+    id: "arrival",
+    title: "Arrival",
     items: [
-      { id: "r1", title: "Dock sensor replacement", meta: "Team 4" },
-      { id: "r2", title: "Rooftop unit inspection", meta: "Team 7" },
+      { id: "a1", title: "VIP amenity list", meta: "Front office" },
+      { id: "a2", title: "Suite upsell offers", meta: "Reservations" },
     ],
   },
   {
-    id: "closed",
-    title: "Closed",
+    id: "event",
+    title: "Events",
     items: [
-      { id: "c1", title: "Lobby access reader", meta: "Signed" },
-      { id: "c2", title: "Freezer alarm calibration", meta: "Billed" },
+      { id: "e1", title: "Ballroom reset", meta: "18:00" },
+      { id: "e2", title: "Deposit variance", meta: "Finance" },
     ],
   },
 ]);
 ---
 
-<BaseLayout title="Metrics Dashboard | CorvaUI Field Services">
+<BaseLayout title="Revenue Dashboard | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="dashboard-title">
         <div>
-          <corva-badge tone="info">Operations desk</corva-badge>
-          <corva-typography id="dashboard-title" as="h1" variant="display">Metrics dashboard</corva-typography>
+          <corva-badge tone="info">Revenue command</corva-badge>
+          <corva-typography id="dashboard-title" as="h1" variant="display">Tonight's hotel control room</corva-typography>
           <corva-typography variant="body">
-            CorvaUI dispatch leads use this morning view to balance service level risk, crew utilization, and closeout readiness.
+            Revenue managers and front-office leads can balance rate moves, arrival readiness, and event commitments before the lobby gets busy.
           </corva-typography>
         </div>
         <corva-toolbar label="Dashboard tools">
@@ -84,46 +75,46 @@ const boardColumns = JSON.stringify([
       </section>
 
       <section class="metric-strip" aria-label="Daily metrics">
-        <corva-card eyebrow="SLA" heading="94% protected">
-          <corva-progress label="SLA coverage" value="94"></corva-progress>
+        <corva-card eyebrow="Occupancy" heading="84% portfolio">
+          <corva-progress label="Pickup against forecast" value="84"></corva-progress>
         </corva-card>
-        <corva-card eyebrow="Crews" heading="18 active">
-          <corva-progress label="Crew utilization" value="81"></corva-progress>
+        <corva-card eyebrow="ADR" heading="$268">
+          <corva-progress label="Rate plan confidence" value="77"></corva-progress>
         </corva-card>
-        <corva-card eyebrow="Revenue" heading="$82.4k ready">
-          <corva-progress label="Billable closeout" value="68"></corva-progress>
+        <corva-card eyebrow="Arrivals" heading="41 VIP">
+          <corva-progress label="Amenity readiness" value="92"></corva-progress>
         </corva-card>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Charts and status">
-        <corva-card eyebrow="Queue" heading="Work order state">
-          <corva-chart label="Current ticket mix" data={chartData}></corva-chart>
+        <corva-card eyebrow="Revenue" heading="Demand mix">
+          <corva-chart label="Booked revenue mix" data={revenueData}></corva-chart>
         </corva-card>
-        <corva-card eyebrow="Risk" heading="Backlog pressure">
-          <corva-chart label="Backlog by priority" data={backlogData}></corva-chart>
+        <corva-card eyebrow="Portfolio" heading="Pickup health">
+          <corva-chart label="Pickup by property" data={pickupData}></corva-chart>
         </corva-card>
       </section>
 
       <section class="app-section" aria-labelledby="workflow-title">
         <div class="app-section-header">
           <div>
-            <corva-typography id="workflow-title" as="h2" variant="title">Dispatch workflow</corva-typography>
-            <corva-typography variant="body">Status widgets and tables share the same rose token surface.</corva-typography>
+            <corva-typography id="workflow-title" as="h2" variant="title">Operating flow</corva-typography>
+            <corva-typography variant="body">Rate decisions, guest preparation, and event work share the rose token surface.</corva-typography>
           </div>
           <corva-tabs
             label="Dashboard window"
-            items='[{"id":"today","label":"Today"},{"id":"week","label":"Week"},{"id":"month","label":"Month"}]'
-            active-id="today"
+            items='[{"id":"tonight","label":"Tonight"},{"id":"week","label":"Week"},{"id":"month","label":"Month"}]'
+            active-id="tonight"
           ></corva-tabs>
         </div>
         <div class="app-two-column app-two-column-wide">
-          <corva-card eyebrow="Board" heading="Ticket movement">
+          <corva-card eyebrow="Board" heading="Work movement">
             <corva-workflow-board columns={boardColumns}></corva-workflow-board>
           </corva-card>
           <div class="app-card-stack">
-            <corva-data-table caption="SLA queue" columns={queueColumns} rows={queueRows}></corva-data-table>
-            <corva-alert tone="warning" heading="Watch list">
-              Three sites need part confirmation before noon to protect premium account commitments.
+            <corva-data-table caption="Priority arrivals" columns={arrivalColumns} rows={arrivalRows}></corva-data-table>
+            <corva-alert tone="warning" heading="Event watch">
+              Ballroom BEO changed after final counts. Review staffing and linen counts before 14:00.
             </corva-alert>
           </div>
         </div>

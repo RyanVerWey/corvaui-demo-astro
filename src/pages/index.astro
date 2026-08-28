@@ -2,36 +2,32 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([{ label: "CorvaUI", href: base }, { label: "Home" }]);
-
-const serviceMix = JSON.stringify([
-  { label: "HVAC", value: 37 },
-  { label: "Electrical", value: 28 },
-  { label: "Facilities", value: 22 },
-  { label: "Specialty", value: 13 },
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Home" }]);
+const demandData = JSON.stringify([
+  { label: "Rooms", value: 82 },
+  { label: "Events", value: 46 },
+  { label: "Dining", value: 33 },
+  { label: "Spa", value: 19 },
 ]);
-
-const proofColumns = JSON.stringify([
-  { key: "customer", header: "Customer" },
-  { key: "region", header: "Region" },
-  { key: "result", header: "Result" },
+const propertyColumns = JSON.stringify([
+  { key: "property", header: "Property" },
+  { key: "occupancy", header: "Occupancy" },
+  { key: "adr", header: "ADR" },
+  { key: "status", header: "Status" },
 ]);
-
-const proofRows = JSON.stringify([
-  { customer: "Cedarline Health", region: "Upper Midwest", result: "18% faster closeout" },
-  { customer: "Prairie Foods", region: "Great Plains", result: "41 sites synchronized" },
-  { customer: "Beacon Retail", region: "Ohio Valley", result: "2.7 hour response gain" },
+const propertyRows = JSON.stringify([
+  { property: "Rosehall Harbor", occupancy: "91%", adr: "$312", status: "Compression" },
+  { property: "Rosehall Garden", occupancy: "76%", adr: "$248", status: "Group arrival" },
+  { property: "Rosehall West", occupancy: "84%", adr: "$226", status: "Stable" },
 ]);
-
-const pathSteps = JSON.stringify([
-  { id: "triage", label: "Triage", description: "Route urgent requests by site, trade, and SLA." },
-  { id: "dispatch", label: "Dispatch", description: "Assign crews with parts, notes, and contact history." },
-  { id: "proof", label: "Proof", description: "Capture closeout photos, signatures, and invoice context." },
+const guestSteps = JSON.stringify([
+  { id: "book", label: "Book", description: "Room, rate, and preference captured." },
+  { id: "prepare", label: "Prepare", description: "Arrival plan, dining, and event notes set." },
+  { id: "delight", label: "Delight", description: "Service recovery and post-stay follow-up." },
 ]);
 ---
 
-<BaseLayout title="CorvaUI Operations | CorvaUI Astro Demo">
+<BaseLayout title="Rosehall Hospitality | CorvaUI Astro Demo">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
@@ -39,31 +35,31 @@ const pathSteps = JSON.stringify([
       <section class="hero-band" aria-labelledby="hero-title">
         <div class="hero-copy">
           <corva-stack gap="lg">
-            <corva-badge tone="success">Rose-light assigned theme</corva-badge>
+            <corva-badge tone="success">Hospitality revenue and guest operations</corva-badge>
             <corva-typography id="hero-title" as="h1" variant="display">
-              Premium field operations for regional service teams
+              Rosehall turns bookings, events, and guest care into one operating view.
             </corva-typography>
             <corva-typography variant="body">
-              CorvaUI Field Services coordinates urgent work orders, customer records, technician schedules, and executive proof in one routed Astro demo.
+              An Astro demo for boutique hotel groups that need rate decisions, VIP arrivals, banquet events, and service recovery to stay coordinated.
             </corva-typography>
             <div class="app-actions">
-              <corva-button size="lg">Plan a rollout</corva-button>
-              <corva-button variant="secondary" size="lg">Review operations</corva-button>
+              <corva-button size="lg">Review pickup</corva-button>
+              <corva-button variant="secondary" size="lg">Plan event week</corva-button>
             </div>
           </corva-stack>
         </div>
 
         <div class="signal-panel">
-          <corva-card eyebrow="Live board" heading="Today at a glance">
+          <corva-card eyebrow="Portfolio" heading="Tonight at a glance">
             <div class="metric-row">
-              <span><strong>126</strong> open orders</span>
-              <span><strong>94%</strong> SLA protected</span>
-              <span><strong>18</strong> crews active</span>
+              <span><strong>84%</strong> occupancy</span>
+              <span><strong>$268</strong> ADR</span>
+              <span><strong>41</strong> VIP arrivals</span>
             </div>
-            <corva-chart label="Service mix" data={serviceMix}></corva-chart>
+            <corva-chart label="Demand mix" data={demandData}></corva-chart>
           </corva-card>
           <corva-alert tone="info" heading="Business story">
-            Dispatch, customer success, and finance share the same source of truth instead of chasing updates through calls and spreadsheets.
+            Revenue, front office, events, and guest experience teams share the same operating picture before arrivals begin.
           </corva-alert>
         </div>
       </section>
@@ -71,24 +67,24 @@ const pathSteps = JSON.stringify([
       <section class="app-section" aria-labelledby="offer-title">
         <div class="app-section-header">
           <div>
-            <corva-typography id="offer-title" as="h2" variant="title">CorvaUI operating system</corva-typography>
-            <corva-typography variant="body">Built for service companies with dense regional coverage and demanding commercial accounts.</corva-typography>
+            <corva-typography id="offer-title" as="h2" variant="title">Boutique hotel control room</corva-typography>
+            <corva-typography variant="body">Built for properties where rate, event, and guest promises need the same source of truth.</corva-typography>
           </div>
           <corva-button-group label="Primary actions">
-            <corva-button size="sm">Create order</corva-button>
-            <corva-button size="sm" variant="secondary">Open dashboard</corva-button>
+            <corva-button size="sm">Open arrivals</corva-button>
+            <corva-button size="sm" variant="secondary">Review groups</corva-button>
           </corva-button-group>
         </div>
 
         <div class="feature-grid">
-          <corva-card eyebrow="Command" heading="SLA-aware dispatch">
-            Assign work by trade, proximity, required equipment, and customer tier.
+          <corva-card eyebrow="Revenue" heading="Pickup without spreadsheet drift">
+            Segment demand, rate moves, and group blocks stay visible beside operational readiness.
           </corva-card>
-          <corva-card eyebrow="Records" heading="Commercial account memory">
-            Keep site contacts, asset history, warranties, and notes ready before the technician arrives.
+          <corva-card eyebrow="Guest care" heading="VIP arrival memory">
+            Preferences, incidents, dining notes, and recovery commitments follow the reservation.
           </corva-card>
-          <corva-card eyebrow="Proof" heading="Closeout evidence">
-            Package photos, signatures, timestamps, and billing context for faster approval.
+          <corva-card eyebrow="Events" heading="Banquet execution">
+            BEO changes, setup status, deposits, and staffing risk sit in the same event record.
           </corva-card>
         </div>
       </section>
@@ -98,18 +94,18 @@ const pathSteps = JSON.stringify([
           <div>
             <div class="app-section-header compact">
               <div>
-                <corva-typography id="proof-title" as="h2" variant="title">Customer proof</corva-typography>
-                <corva-typography variant="body">The fake business site still exercises real data, tables, charts, forms, and routed pages.</corva-typography>
+                <corva-typography id="proof-title" as="h2" variant="title">Property proof</corva-typography>
+                <corva-typography variant="body">The demo exercises real tables, charts, forms, workflow, settings, and routed pages.</corva-typography>
               </div>
             </div>
-            <corva-data-table caption="Customer outcomes" columns={proofColumns} rows={proofRows}></corva-data-table>
+            <corva-data-table caption="Portfolio watch" columns={propertyColumns} rows={propertyRows}></corva-data-table>
           </div>
-          <corva-card eyebrow="Workflow" heading="From call to closeout">
-            <corva-stepper steps={pathSteps} active-index="1"></corva-stepper>
+          <corva-card eyebrow="Guest journey" heading="Reservation to recovery">
+            <corva-stepper steps={guestSteps} active-index="1"></corva-stepper>
             <corva-divider label="Next route"></corva-divider>
             <div class="app-actions">
-              <corva-link href={`${base}dashboard/`}>View dashboard</corva-link>
-              <corva-link href={`${base}work-orders/`}>Start work order</corva-link>
+              <corva-link href={`${base}dashboard/`}>View revenue dashboard</corva-link>
+              <corva-link href={`${base}work-orders/`}>Start event intake</corva-link>
             </div>
           </corva-card>
         </div>

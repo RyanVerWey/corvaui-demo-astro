@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
+  { label: "Rosehall", href: base },
   { label: "Package proof" },
 ]);
 
@@ -17,7 +17,7 @@ const packageColumns = JSON.stringify([
 const packageRows = JSON.stringify([
   { package: "@corvaui/web-components", version: "0.1.7", usage: "Custom elements registered in the shared Astro layout" },
   { package: "@corvaui/tokens", version: "0.1.7", usage: "Token CSS imported once and applied through data-corva-theme" },
-  { package: "astro", version: "^5.0.0", usage: "File-based static routes for the fake business app" },
+  { package: "astro", version: "^7.2.9", usage: "File-based static routes for the hospitality app" },
 ]);
 
 const routeColumns = JSON.stringify([
@@ -26,12 +26,12 @@ const routeColumns = JSON.stringify([
 ]);
 
 const routeRows = JSON.stringify([
-  { route: "/", proof: "Marketing home, story, offer, proof, CTA" },
-  { route: "/dashboard/", proof: "Charts, workflow widgets, SLA tables" },
-  { route: "/work-orders/", proof: "Form controls, validation, upload/date/select fields" },
-  { route: "/customers/", proof: "Pipeline, records, grid, list, detail" },
-  { route: "/data-table/", proof: "Dedicated sortable/filterable service-record grid" },
-  { route: "/settings/", proof: "Tabs, toggles, locale, account preferences" },
+  { route: "/", proof: "Hospitality home, portfolio story, property proof, CTA" },
+  { route: "/dashboard/", proof: "Revenue charts, arrival queue, workflow widgets" },
+  { route: "/work-orders/", proof: "Event intake form with date, time, file, radio, and select controls" },
+  { route: "/customers/", proof: "Guest records, preference tree, workflow, grid, and detail" },
+  { route: "/data-table/", proof: "Dedicated sortable/filterable booking grid" },
+  { route: "/settings/", proof: "Tabs, toggles, locale, account, and property preferences" },
   { route: "/about/", proof: "Package and integration explanation" },
 ]);
 
@@ -42,7 +42,7 @@ const integrationSteps = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Package Proof | CorvaUI Field Services">
+<BaseLayout title="Package Proof | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
@@ -52,7 +52,7 @@ const integrationSteps = JSON.stringify([
           <corva-badge tone="success">Package proof</corva-badge>
           <corva-typography id="about-title" as="h1" variant="display">Astro integration proof</corva-typography>
           <corva-typography variant="body">
-            This CorvaUI route explains the installed CorvaUI packages and shows that the demo is a multi-page Astro app, not a component preview page.
+            This CorvaUI route explains the installed CorvaUI packages and shows that the demo is a multi-page hospitality app, not a component preview page.
           </corva-typography>
         </div>
         <corva-card eyebrow="Theme" heading="rose-light first">

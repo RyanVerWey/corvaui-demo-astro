@@ -1,15 +1,15 @@
 # CorvaUI Astro Demo
 
-Public Vercel demo using Astro, direct `@corvaui/web-components` custom elements, `@corvaui/tokens`, and the rose token family.
+Public Vercel demo using Astro, direct `@corvaui/web-components` custom elements, `@corvaui/tokens`, and the rose token family. The app mocks Rosehall Hospitality, a boutique hotel revenue, events, and guest-operations product.
 
 ## Routes
 
-- `/` marketing and launch surface
-- `/dashboard/` operations dashboard
-- `/work-orders/` work-order intake
-- `/customers/` customer records
-- `/data-table/` sortable/filterable service-record grid
-- `/settings/` account settings
+- `/` hospitality portfolio launch surface
+- `/dashboard/` revenue and arrival dashboard
+- `/work-orders/` event intake
+- `/customers/` guest records
+- `/data-table/` sortable/filterable booking grid
+- `/settings/` hospitality workspace settings
 - `/about/` package proof
 
 ## Quality Gate

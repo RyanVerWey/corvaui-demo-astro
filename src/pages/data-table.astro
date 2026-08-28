@@ -2,68 +2,60 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
-
-const breadcrumbs = JSON.stringify([
-  { label: "CorvaUI", href: base },
-  { label: "Data table" },
-]);
-
-const serviceRecordColumns = JSON.stringify([
-  { key: "id", header: "Record", sortable: true, filterable: true },
-  { key: "account", header: "Account", sortable: true, filterable: true },
-  { key: "region", header: "Region", sortable: true, filterable: true },
-  { key: "owner", header: "Owner", sortable: true, filterable: true },
-  { key: "priority", header: "Priority", sortable: true, filterable: true },
+const breadcrumbs = JSON.stringify([{ label: "Rosehall", href: base }, { label: "Booking table" }]);
+const bookingColumns = JSON.stringify([
+  { key: "id", header: "Booking", sortable: true, filterable: true },
+  { key: "guest", header: "Guest", sortable: true, filterable: true },
+  { key: "property", header: "Property", sortable: true, filterable: true },
+  { key: "segment", header: "Segment", sortable: true, filterable: true },
+  { key: "rate", header: "Rate", sortable: true, filterable: true },
   { key: "status", header: "Status", sortable: true, filterable: true },
-  { key: "window", header: "Window", sortable: true, filterable: true },
+  { key: "arrival", header: "Arrival", sortable: true, filterable: true },
 ]);
-
-const serviceRecordRows = JSON.stringify([
-  { id: "SR-3101", account: "Cedarline Health", region: "Upper Midwest", owner: "Mara Chen", priority: "High", status: "Scheduled", window: "09:00-11:00" },
-  { id: "SR-3102", account: "Prairie Foods", region: "Great Plains", owner: "Owen Patel", priority: "Critical", status: "Parts hold", window: "11:30-14:00" },
-  { id: "SR-3103", account: "Beacon Retail", region: "Ohio Valley", owner: "Inez Cruz", priority: "Normal", status: "On route", window: "13:00-15:00" },
-  { id: "SR-3104", account: "Marsh Labs", region: "Upper Midwest", owner: "Mara Chen", priority: "High", status: "Approval", window: "15:00-17:00" },
-  { id: "SR-3105", account: "Lakefront Hotel", region: "Great Lakes", owner: "Owen Patel", priority: "Normal", status: "Closed", window: "08:00-10:00" },
-  { id: "SR-3106", account: "Northline Cargo", region: "Ohio Valley", owner: "Inez Cruz", priority: "Critical", status: "Triage", window: "10:30-12:30" },
+const bookingRows = JSON.stringify([
+  { id: "RS-3101", guest: "Nora Vale", property: "Harbor", segment: "VIP leisure", rate: "$418", status: "Prepared", arrival: "18:40" },
+  { id: "RS-3102", guest: "Cedar Group", property: "Harbor", segment: "Corporate", rate: "$289", status: "Block review", arrival: "16:00" },
+  { id: "RS-3103", guest: "Kento Mori", property: "Garden", segment: "Suite repeat", rate: "$512", status: "Upsell sent", arrival: "20:10" },
+  { id: "RS-3104", guest: "Amina Hart", property: "West", segment: "Recovery", rate: "$236", status: "Manager note", arrival: "15:20" },
+  { id: "RS-3105", guest: "Luca Stone", property: "Garden", segment: "Wedding", rate: "$344", status: "Amenity hold", arrival: "17:30" },
+  { id: "RS-3106", guest: "Parker Lee", property: "Suites", segment: "Long stay", rate: "$198", status: "Checked in", arrival: "Closed" },
 ]);
-
 const qualityColumns = JSON.stringify([
   { key: "surface", header: "Surface" },
   { key: "proof", header: "Proof" },
 ]);
-
 const qualityRows = JSON.stringify([
-  { surface: "Sort", proof: "Column metadata enables DataGrid sorting." },
+  { surface: "Sort", proof: "Reservation metadata enables DataGrid sorting." },
   { surface: "Filter", proof: "Column metadata enables scoped filter inputs." },
   { surface: "Pagination", proof: "Page size is constrained to four rows." },
   { surface: "Theme", proof: "Rose token set remains scoped at the shared layout." },
 ]);
 ---
 
-<BaseLayout title="Data Table | CorvaUI Field Services">
+<BaseLayout title="Booking Table | Rosehall Hospitality">
   <main class="app-main">
     <div class="app-page">
       <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="data-table-title">
         <div>
-          <corva-badge tone="info">Data operations</corva-badge>
-          <corva-typography id="data-table-title" as="h1" variant="display">Service records data table</corva-typography>
+          <corva-badge tone="info">Reservation operations</corva-badge>
+          <corva-typography id="data-table-title" as="h1" variant="display">Booking and arrival table</corva-typography>
           <corva-typography variant="body">
-            Astro renders the route statically while CorvaUI owns dense table behavior, tokenized states, and accessible record scanning.
+            Astro renders the route statically while CorvaUI owns dense booking behavior, tokenized states, and accessible record scanning.
           </corva-typography>
         </div>
-        <corva-toolbar label="Data table tools">
+        <corva-toolbar label="Booking table tools">
           <corva-button size="sm" variant="secondary">Export CSV</corva-button>
           <corva-button size="sm">Save view</corva-button>
         </corva-toolbar>
       </section>
 
-      <section class="app-two-column app-two-column-wide" aria-label="Service record data">
+      <section class="app-two-column app-two-column-wide" aria-label="Booking data">
         <corva-data-grid
-          caption="Service record queue"
-          columns={serviceRecordColumns}
-          rows={serviceRecordRows}
+          caption="Reservation readiness queue"
+          columns={bookingColumns}
+          rows={bookingRows}
           sortable
           filterable
           pageable
@@ -71,8 +63,8 @@ const qualityRows = JSON.stringify([
         ></corva-data-grid>
 
         <div class="app-card-stack">
-          <corva-card eyebrow="Record policy" heading="Closeout confidence">
-            <corva-progress label="Rows with complete evidence" value="84"></corva-progress>
+          <corva-card eyebrow="Record policy" heading="Arrival confidence">
+            <corva-progress label="Bookings with preference review" value="88"></corva-progress>
             <corva-alert tone="info" heading="Astro integration">
               The page passes serialized JSON props to custom elements so hosted static output keeps DataGrid behavior intact.
             </corva-alert>
