@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "Northstar", href: base },
+  { label: "CorvaUI", href: base },
   { label: "Settings" },
 ]);
 
@@ -33,80 +33,80 @@ const tabs = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Settings | Northstar Field Services">
+<BaseLayout title="Settings | CorvaUI Field Services">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="settings-title">
         <div>
-          <apex-badge tone="info">Account</apex-badge>
-          <apex-typography id="settings-title" as="h1" variant="display">Settings and account</apex-typography>
-          <apex-typography variant="body">
-            Northstar preferences, locale, notification rules, and theme controls demonstrate a compact application settings surface.
-          </apex-typography>
+          <corva-badge tone="info">Account</corva-badge>
+          <corva-typography id="settings-title" as="h1" variant="display">Settings and account</corva-typography>
+          <corva-typography variant="body">
+            CorvaUI preferences, locale, notification rules, and theme controls demonstrate a compact application settings surface.
+          </corva-typography>
         </div>
-        <apex-tabs label="Settings sections" items={tabs} active-id="workspace"></apex-tabs>
+        <corva-tabs label="Settings sections" items={tabs} active-id="workspace"></corva-tabs>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Settings forms">
-        <apex-card eyebrow="Profile" heading="Operator identity">
+        <corva-card eyebrow="Profile" heading="Operator identity">
           <form class="app-form-grid">
-            <apex-text-field label="Name" name="name" value="Ryan VerWey"></apex-text-field>
-            <apex-text-field label="Email" name="email" type="email" value="ops@northstar.example"></apex-text-field>
-            <apex-select label="Locale" name="locale" options={localeOptions} value="en-US"></apex-select>
-            <apex-select label="Time zone" name="timezone" options={timezoneOptions} value="America/New_York"></apex-select>
+            <corva-text-field label="Name" name="name" value="Ryan VerWey"></corva-text-field>
+            <corva-text-field label="Email" name="email" type="email" value="ops@northstar.example"></corva-text-field>
+            <corva-select label="Locale" name="locale" options={localeOptions} value="en-US"></corva-select>
+            <corva-select label="Time zone" name="timezone" options={timezoneOptions} value="America/New_York"></corva-select>
             <div class="form-wide">
-              <apex-radio-group
+              <corva-radio-group
                 label="Theme preference"
                 name="theme"
                 options={themeOptions}
                 value="rose-light"
-              ></apex-radio-group>
+              ></corva-radio-group>
             </div>
             <div class="form-wide app-actions">
-              <apex-button type="submit">Save settings</apex-button>
-              <apex-button type="button" variant="secondary">Reset</apex-button>
+              <corva-button type="submit">Save settings</corva-button>
+              <corva-button type="button" variant="secondary">Reset</corva-button>
             </div>
           </form>
-        </apex-card>
+        </corva-card>
 
         <div class="app-card-stack">
-          <apex-card eyebrow="Workspace" heading="Dispatch defaults">
+          <corva-card eyebrow="Workspace" heading="Dispatch defaults">
             <div class="record-list">
-              <apex-switch label="Auto-assign same-day HVAC tickets" checked></apex-switch>
-              <apex-switch label="Require closeout photo on premium accounts" checked></apex-switch>
-              <apex-switch label="Hold invoices missing customer signature"></apex-switch>
+              <corva-switch label="Auto-assign same-day HVAC tickets" checked></corva-switch>
+              <corva-switch label="Require closeout photo on premium accounts" checked></corva-switch>
+              <corva-switch label="Hold invoices missing customer signature"></corva-switch>
             </div>
-          </apex-card>
-          <apex-card eyebrow="Alerts" heading="Notification rules">
+          </corva-card>
+          <corva-card eyebrow="Alerts" heading="Notification rules">
             <div class="record-list">
-              <apex-checkbox label="SLA risk email" description="Send when a priority ticket has less than one hour left." checked></apex-checkbox>
-              <apex-checkbox label="Daily closeout digest" description="Summarize approvals ready for billing." checked></apex-checkbox>
-              <apex-checkbox label="Pipeline renewal warning" description="Notify account owners before renewal risk rises."></apex-checkbox>
+              <corva-checkbox label="SLA risk email" description="Send when a priority ticket has less than one hour left." checked></corva-checkbox>
+              <corva-checkbox label="Daily closeout digest" description="Summarize approvals ready for billing." checked></corva-checkbox>
+              <corva-checkbox label="Pipeline renewal warning" description="Notify account owners before renewal risk rises."></corva-checkbox>
             </div>
-          </apex-card>
+          </corva-card>
         </div>
       </section>
 
       <section class="app-section" aria-labelledby="access-title">
         <div class="app-section-header">
           <div>
-            <apex-typography id="access-title" as="h2" variant="title">Access controls</apex-typography>
-            <apex-typography variant="body">Representative controls stay readable in rose-light and rose-dark.</apex-typography>
+            <corva-typography id="access-title" as="h2" variant="title">Access controls</corva-typography>
+            <corva-typography variant="body">Representative controls stay readable in rose-light and rose-dark.</corva-typography>
           </div>
-          <apex-badge tone="success">Synced</apex-badge>
+          <corva-badge tone="success">Synced</corva-badge>
         </div>
         <div class="feature-grid">
-          <apex-card eyebrow="Role" heading="Dispatch manager">
+          <corva-card eyebrow="Role" heading="Dispatch manager">
             Can edit routing rules, schedule crews, and approve emergency escalation.
-          </apex-card>
-          <apex-card eyebrow="Package" heading="Commercial operations">
+          </corva-card>
+          <corva-card eyebrow="Package" heading="Commercial operations">
             Includes customer records, pipeline views, SLA reporting, and proof packets.
-          </apex-card>
-          <apex-card eyebrow="Security" heading="Two-step review">
+          </corva-card>
+          <corva-card eyebrow="Security" heading="Two-step review">
             High-value invoice changes require a second account lead before billing.
-          </apex-card>
+          </corva-card>
         </div>
       </section>
     </div>

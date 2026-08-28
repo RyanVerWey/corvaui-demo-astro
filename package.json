@@ -1,18 +1,18 @@
 {
-  "name": "apexui-demo-astro",
+  "name": "corvaui-demo-astro",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
-    "preview": "astro preview --host 127.0.0.1"
+    "preview": "astro preview --host 127.0.0.1",
+    "test": "npm audit && npm run build"
   },
   "dependencies": {
-    "@apexui/tokens": "0.1.0",
-    "@apexui/web-components": "0.1.0",
-    "astro": "^5.0.0",
+    "@corvaui/tokens": "0.1.7",
+    "@corvaui/web-components": "0.1.7",
+    "astro": "^7.2.9",
     "typescript": "^5.8.3"
-  },
-  "devDependencies": {}
+  }
 }

@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "Northstar", href: base },
+  { label: "CorvaUI", href: base },
   { label: "Work orders" },
 ]);
 
@@ -35,101 +35,101 @@ const intakeSteps = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Work Order Form | Northstar Field Services">
+<BaseLayout title="Work Order Form | CorvaUI Field Services">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="work-order-title">
         <div>
-          <apex-badge tone="success">Intake</apex-badge>
-          <apex-typography id="work-order-title" as="h1" variant="display">Create work order</apex-typography>
-          <apex-typography variant="body">
-            Northstar uses ApexUI controls for real customer intake: validation hints, dates, selections, upload, and closeout requirements.
-          </apex-typography>
+          <corva-badge tone="success">Intake</corva-badge>
+          <corva-typography id="work-order-title" as="h1" variant="display">Create work order</corva-typography>
+          <corva-typography variant="body">
+            CorvaUI uses CorvaUI controls for real customer intake: validation hints, dates, selections, upload, and closeout requirements.
+          </corva-typography>
         </div>
-        <apex-card eyebrow="Progress" heading="Request detail">
-          <apex-stepper steps={intakeSteps} active-index="0"></apex-stepper>
-        </apex-card>
+        <corva-card eyebrow="Progress" heading="Request detail">
+          <corva-stepper steps={intakeSteps} active-index="0"></corva-stepper>
+        </corva-card>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Work order form">
-        <apex-card eyebrow="Form" heading="Service request">
+        <corva-card eyebrow="Form" heading="Service request">
           <form class="app-form-grid">
-            <apex-autocomplete
+            <corva-autocomplete
               label="Site"
               options={siteOptions}
               value="Beacon Retail 14"
               hint="Start with customer or site name."
-            ></apex-autocomplete>
-            <apex-text-field
+            ></corva-autocomplete>
+            <corva-text-field
               label="Requester"
               name="requester"
               value="Dana Ortiz"
               hint="Person who approved service."
-            ></apex-text-field>
-            <apex-select label="Trade" name="trade" options={tradeOptions} value="hvac"></apex-select>
-            <apex-date-picker label="Requested date" name="requested-date" value="2026-06-16"></apex-date-picker>
-            <apex-time-picker label="Arrival window" name="arrival-window" value="09:30"></apex-time-picker>
-            <apex-text-field
+            ></corva-text-field>
+            <corva-select label="Trade" name="trade" options={tradeOptions} value="hvac"></corva-select>
+            <corva-date-picker label="Requested date" name="requested-date" value="2026-06-16"></corva-date-picker>
+            <corva-time-picker label="Arrival window" name="arrival-window" value="09:30"></corva-time-picker>
+            <corva-text-field
               label="Purchase order"
               name="purchase-order"
               placeholder="PO or approval code"
               error="Required for premium accounts before dispatch."
-            ></apex-text-field>
+            ></corva-text-field>
             <div class="form-wide">
-              <apex-radio-group
+              <corva-radio-group
                 label="Priority"
                 name="priority"
                 options={priorityOptions}
                 value="same-day"
-              ></apex-radio-group>
+              ></corva-radio-group>
             </div>
             <div class="form-wide">
-              <apex-textarea
+              <corva-textarea
                 label="Issue description"
                 name="issue"
                 rows="5"
                 value="Customer reports intermittent rooftop unit shutdown and warm air in the west sales floor."
-              ></apex-textarea>
+              ></corva-textarea>
             </div>
-            <apex-text-field
+            <corva-text-field
               label="Upload photo"
               name="photo"
               type="file"
               hint="Attach site image, quote, or approval document."
-            ></apex-text-field>
-            <apex-select
+            ></corva-text-field>
+            <corva-select
               label="Closeout proof"
               name="proof"
               options='[{"label":"Photo and signature","value":"photo-signature"},{"label":"Technician notes only","value":"notes"},{"label":"Manager approval","value":"approval"}]'
               value="photo-signature"
-            ></apex-select>
+            ></corva-select>
             <div class="form-wide">
-              <apex-checkbox
+              <corva-checkbox
                 label="Notify account manager"
                 description="Send intake summary after the work order is saved."
                 checked
-              ></apex-checkbox>
+              ></corva-checkbox>
             </div>
             <div class="form-wide app-actions">
-              <apex-button type="submit">Save work order</apex-button>
-              <apex-button type="reset" variant="secondary">Clear draft</apex-button>
+              <corva-button type="submit">Save work order</corva-button>
+              <corva-button type="reset" variant="secondary">Clear draft</corva-button>
             </div>
           </form>
-        </apex-card>
+        </corva-card>
 
         <div class="app-card-stack">
-          <apex-alert tone="info" heading="Validation smoke">
+          <corva-alert tone="info" heading="Validation smoke">
             PO shows an error state, date and time controls render independently, and the file field stays inside the responsive form grid.
-          </apex-alert>
-          <apex-card eyebrow="Dispatch notes" heading="Recommended crew">
+          </corva-alert>
+          <corva-card eyebrow="Dispatch notes" heading="Recommended crew">
             <div class="record-list">
               <span><strong>Team 7</strong> has HVAC certification and one open slot near the site.</span>
               <span><strong>Parts</strong> filter set: rooftop unit sensor kit, belt pack, access reader.</span>
               <span><strong>Customer tier</strong> premium, same-day communication expected.</span>
             </div>
-          </apex-card>
+          </corva-card>
         </div>
       </section>
     </div>

@@ -1,8 +1,8 @@
 ---
-import "@apexui/tokens/css";
+import "@corvaui/tokens/css";
 import "../styles.css";
 
-const { title = "Northstar Field Services" } = Astro.props;
+const { title = "CorvaUI Operations" } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname.replace(/\/$/, "");
 const navItems = [
@@ -10,86 +10,87 @@ const navItems = [
   { href: `${base}dashboard/`, label: "Dashboard", path: `${base}dashboard` },
   { href: `${base}work-orders/`, label: "Work orders", path: `${base}work-orders` },
   { href: `${base}customers/`, label: "Customers", path: `${base}customers` },
+  { href: `${base}data-table/`, label: "Data table", path: `${base}data-table` },
   { href: `${base}settings/`, label: "Settings", path: `${base}settings` },
   { href: `${base}about/`, label: "Proof", path: `${base}about` },
 ];
 ---
 <!doctype html>
-<html lang="en" data-apex-theme="rose-light">
+<html lang="en" data-corva-theme="rose-light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Northstar Field Services demo site built with Astro routing, ApexUI web components, and rose tokens."
+      content="CorvaUI Operations demo site built with Astro routing, CorvaUI web components, and rose tokens."
     />
     <title>{title}</title>
   </head>
   <body>
     <div class="app-shell">
-      <apex-app-bar heading="Northstar Field Services">
-        <apex-badge tone="info">Northstar Astro</apex-badge>
+      <corva-app-bar heading="CorvaUI Operations">
+        <corva-badge tone="info">CorvaUI Astro</corva-badge>
         <nav class="app-nav" slot="navigation" aria-label="Primary">
           {
             navItems.map((item) => (
-              <apex-link
+              <corva-link
                 href={item.href}
                 variant={currentPath === item.path ? "standalone" : "subtle"}
               >
                 {item.label}
-              </apex-link>
+              </corva-link>
             ))
           }
         </nav>
         <div class="app-theme" slot="actions">
-          <apex-switch id="theme-switch" label="Dark"></apex-switch>
+          <corva-switch id="theme-switch" label="Dark"></corva-switch>
         </div>
-      </apex-app-bar>
+      </corva-app-bar>
 
       <slot />
     </div>
 
     <script>
-      import "@apexui/web-components/components/apex-accordion.js";
-      import "@apexui/web-components/components/apex-alert.js";
-      import "@apexui/web-components/components/apex-app-bar.js";
-      import "@apexui/web-components/components/apex-autocomplete.js";
-      import "@apexui/web-components/components/apex-avatar.js";
-      import "@apexui/web-components/components/apex-badge.js";
-      import "@apexui/web-components/components/apex-button-group.js";
-      import "@apexui/web-components/components/apex-box.js";
-      import "@apexui/web-components/components/apex-breadcrumbs.js";
-      import "@apexui/web-components/components/apex-button.js";
-      import "@apexui/web-components/components/apex-card.js";
-      import "@apexui/web-components/components/apex-chart.js";
-      import "@apexui/web-components/components/apex-checkbox.js";
-      import "@apexui/web-components/components/apex-chip.js";
-      import "@apexui/web-components/components/apex-date-picker.js";
-      import "@apexui/web-components/components/apex-data-grid.js";
-      import "@apexui/web-components/components/apex-data-table.js";
-      import "@apexui/web-components/components/apex-divider.js";
-      import "@apexui/web-components/components/apex-empty-state.js";
-      import "@apexui/web-components/components/apex-icon.js";
-      import "@apexui/web-components/components/apex-link.js";
-      import "@apexui/web-components/components/apex-progress.js";
-      import "@apexui/web-components/components/apex-radio-group.js";
-      import "@apexui/web-components/components/apex-rating.js";
-      import "@apexui/web-components/components/apex-search-form.js";
-      import "@apexui/web-components/components/apex-select.js";
-      import "@apexui/web-components/components/apex-slider.js";
-      import "@apexui/web-components/components/apex-stack.js";
-      import "@apexui/web-components/components/apex-stepper.js";
-      import "@apexui/web-components/components/apex-switch.js";
-      import "@apexui/web-components/components/apex-tabs.js";
-      import "@apexui/web-components/components/apex-text-field.js";
-      import "@apexui/web-components/components/apex-textarea.js";
-      import "@apexui/web-components/components/apex-time-picker.js";
-      import "@apexui/web-components/components/apex-timeline.js";
-      import "@apexui/web-components/components/apex-toggle-group.js";
-      import "@apexui/web-components/components/apex-toolbar.js";
-      import "@apexui/web-components/components/apex-tree-view.js";
-      import "@apexui/web-components/components/apex-typography.js";
-      import "@apexui/web-components/components/apex-workflow-board.js";
+      import "@corvaui/web-components/components/corva-accordion.js";
+      import "@corvaui/web-components/components/corva-alert.js";
+      import "@corvaui/web-components/components/corva-app-bar.js";
+      import "@corvaui/web-components/components/corva-autocomplete.js";
+      import "@corvaui/web-components/components/corva-avatar.js";
+      import "@corvaui/web-components/components/corva-badge.js";
+      import "@corvaui/web-components/components/corva-button-group.js";
+      import "@corvaui/web-components/components/corva-box.js";
+      import "@corvaui/web-components/components/corva-breadcrumbs.js";
+      import "@corvaui/web-components/components/corva-button.js";
+      import "@corvaui/web-components/components/corva-card.js";
+      import "@corvaui/web-components/components/corva-chart.js";
+      import "@corvaui/web-components/components/corva-checkbox.js";
+      import "@corvaui/web-components/components/corva-chip.js";
+      import "@corvaui/web-components/components/corva-date-picker.js";
+      import "@corvaui/web-components/components/corva-data-grid.js";
+      import "@corvaui/web-components/components/corva-data-table.js";
+      import "@corvaui/web-components/components/corva-divider.js";
+      import "@corvaui/web-components/components/corva-empty-state.js";
+      import "@corvaui/web-components/components/corva-icon.js";
+      import "@corvaui/web-components/components/corva-link.js";
+      import "@corvaui/web-components/components/corva-progress.js";
+      import "@corvaui/web-components/components/corva-radio-group.js";
+      import "@corvaui/web-components/components/corva-rating.js";
+      import "@corvaui/web-components/components/corva-search-form.js";
+      import "@corvaui/web-components/components/corva-select.js";
+      import "@corvaui/web-components/components/corva-slider.js";
+      import "@corvaui/web-components/components/corva-stack.js";
+      import "@corvaui/web-components/components/corva-stepper.js";
+      import "@corvaui/web-components/components/corva-switch.js";
+      import "@corvaui/web-components/components/corva-tabs.js";
+      import "@corvaui/web-components/components/corva-text-field.js";
+      import "@corvaui/web-components/components/corva-textarea.js";
+      import "@corvaui/web-components/components/corva-time-picker.js";
+      import "@corvaui/web-components/components/corva-timeline.js";
+      import "@corvaui/web-components/components/corva-toggle-group.js";
+      import "@corvaui/web-components/components/corva-toolbar.js";
+      import "@corvaui/web-components/components/corva-tree-view.js";
+      import "@corvaui/web-components/components/corva-typography.js";
+      import "@corvaui/web-components/components/corva-workflow-board.js";
 
       const storageKey = "apexui-demo-theme";
       const root = document.documentElement;
@@ -120,7 +121,7 @@ const navItems = [
 
       applyTheme(readTheme());
 
-      switchEl?.addEventListener("apexChange", (event) => {
+      switchEl?.addEventListener("corvaChange", (event) => {
         const theme = event.detail?.checked ? "rose-dark" : "rose-light";
         writeTheme(theme);
         applyTheme(theme);

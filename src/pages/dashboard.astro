@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "Northstar", href: base },
+  { label: "CorvaUI", href: base },
   { label: "Dashboard" },
 ]);
 
@@ -64,67 +64,67 @@ const boardColumns = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Metrics Dashboard | Northstar Field Services">
+<BaseLayout title="Metrics Dashboard | CorvaUI Field Services">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="dashboard-title">
         <div>
-          <apex-badge tone="info">Operations desk</apex-badge>
-          <apex-typography id="dashboard-title" as="h1" variant="display">Metrics dashboard</apex-typography>
-          <apex-typography variant="body">
-            Northstar dispatch leads use this morning view to balance service level risk, crew utilization, and closeout readiness.
-          </apex-typography>
+          <corva-badge tone="info">Operations desk</corva-badge>
+          <corva-typography id="dashboard-title" as="h1" variant="display">Metrics dashboard</corva-typography>
+          <corva-typography variant="body">
+            CorvaUI dispatch leads use this morning view to balance service level risk, crew utilization, and closeout readiness.
+          </corva-typography>
         </div>
-        <apex-toolbar label="Dashboard tools">
-          <apex-button size="sm">Refresh</apex-button>
-          <apex-button size="sm" variant="secondary">Export</apex-button>
-        </apex-toolbar>
+        <corva-toolbar label="Dashboard tools">
+          <corva-button size="sm">Refresh</corva-button>
+          <corva-button size="sm" variant="secondary">Export</corva-button>
+        </corva-toolbar>
       </section>
 
       <section class="metric-strip" aria-label="Daily metrics">
-        <apex-card eyebrow="SLA" heading="94% protected">
-          <apex-progress label="SLA coverage" value="94"></apex-progress>
-        </apex-card>
-        <apex-card eyebrow="Crews" heading="18 active">
-          <apex-progress label="Crew utilization" value="81"></apex-progress>
-        </apex-card>
-        <apex-card eyebrow="Revenue" heading="$82.4k ready">
-          <apex-progress label="Billable closeout" value="68"></apex-progress>
-        </apex-card>
+        <corva-card eyebrow="SLA" heading="94% protected">
+          <corva-progress label="SLA coverage" value="94"></corva-progress>
+        </corva-card>
+        <corva-card eyebrow="Crews" heading="18 active">
+          <corva-progress label="Crew utilization" value="81"></corva-progress>
+        </corva-card>
+        <corva-card eyebrow="Revenue" heading="$82.4k ready">
+          <corva-progress label="Billable closeout" value="68"></corva-progress>
+        </corva-card>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Charts and status">
-        <apex-card eyebrow="Queue" heading="Work order state">
-          <apex-chart label="Current ticket mix" data={chartData}></apex-chart>
-        </apex-card>
-        <apex-card eyebrow="Risk" heading="Backlog pressure">
-          <apex-chart label="Backlog by priority" data={backlogData}></apex-chart>
-        </apex-card>
+        <corva-card eyebrow="Queue" heading="Work order state">
+          <corva-chart label="Current ticket mix" data={chartData}></corva-chart>
+        </corva-card>
+        <corva-card eyebrow="Risk" heading="Backlog pressure">
+          <corva-chart label="Backlog by priority" data={backlogData}></corva-chart>
+        </corva-card>
       </section>
 
       <section class="app-section" aria-labelledby="workflow-title">
         <div class="app-section-header">
           <div>
-            <apex-typography id="workflow-title" as="h2" variant="title">Dispatch workflow</apex-typography>
-            <apex-typography variant="body">Status widgets and tables share the same rose token surface.</apex-typography>
+            <corva-typography id="workflow-title" as="h2" variant="title">Dispatch workflow</corva-typography>
+            <corva-typography variant="body">Status widgets and tables share the same rose token surface.</corva-typography>
           </div>
-          <apex-tabs
+          <corva-tabs
             label="Dashboard window"
             items='[{"id":"today","label":"Today"},{"id":"week","label":"Week"},{"id":"month","label":"Month"}]'
             active-id="today"
-          ></apex-tabs>
+          ></corva-tabs>
         </div>
         <div class="app-two-column app-two-column-wide">
-          <apex-card eyebrow="Board" heading="Ticket movement">
-            <apex-workflow-board columns={boardColumns}></apex-workflow-board>
-          </apex-card>
+          <corva-card eyebrow="Board" heading="Ticket movement">
+            <corva-workflow-board columns={boardColumns}></corva-workflow-board>
+          </corva-card>
           <div class="app-card-stack">
-            <apex-data-table caption="SLA queue" columns={queueColumns} rows={queueRows}></apex-data-table>
-            <apex-alert tone="warning" heading="Watch list">
+            <corva-data-table caption="SLA queue" columns={queueColumns} rows={queueRows}></corva-data-table>
+            <corva-alert tone="warning" heading="Watch list">
               Three sites need part confirmation before noon to protect premium account commitments.
-            </apex-alert>
+            </corva-alert>
           </div>
         </div>
       </section>

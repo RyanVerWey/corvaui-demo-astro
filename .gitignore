@@ -8,3 +8,5 @@ out
 .angular
 .vite
 .env
+.vercel
+.env*

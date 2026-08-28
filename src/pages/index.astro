@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const base = import.meta.env.BASE_URL;
 
-const breadcrumbs = JSON.stringify([{ label: "Northstar", href: base }, { label: "Home" }]);
+const breadcrumbs = JSON.stringify([{ label: "CorvaUI", href: base }, { label: "Home" }]);
 
 const serviceMix = JSON.stringify([
   { label: "HVAC", value: 37 },
@@ -31,65 +31,65 @@ const pathSteps = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Northstar Field Services | ApexUI Astro Demo">
+<BaseLayout title="CorvaUI Operations | CorvaUI Astro Demo">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="hero-band" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <apex-stack gap="lg">
-            <apex-badge tone="success">Rose-light assigned theme</apex-badge>
-            <apex-typography id="hero-title" as="h1" variant="display">
+          <corva-stack gap="lg">
+            <corva-badge tone="success">Rose-light assigned theme</corva-badge>
+            <corva-typography id="hero-title" as="h1" variant="display">
               Premium field operations for regional service teams
-            </apex-typography>
-            <apex-typography variant="body">
-              Northstar Field Services coordinates urgent work orders, customer records, technician schedules, and executive proof in one routed Astro demo.
-            </apex-typography>
+            </corva-typography>
+            <corva-typography variant="body">
+              CorvaUI Field Services coordinates urgent work orders, customer records, technician schedules, and executive proof in one routed Astro demo.
+            </corva-typography>
             <div class="app-actions">
-              <apex-button size="lg">Plan a rollout</apex-button>
-              <apex-button variant="secondary" size="lg">Review operations</apex-button>
+              <corva-button size="lg">Plan a rollout</corva-button>
+              <corva-button variant="secondary" size="lg">Review operations</corva-button>
             </div>
-          </apex-stack>
+          </corva-stack>
         </div>
 
         <div class="signal-panel">
-          <apex-card eyebrow="Live board" heading="Today at a glance">
+          <corva-card eyebrow="Live board" heading="Today at a glance">
             <div class="metric-row">
               <span><strong>126</strong> open orders</span>
               <span><strong>94%</strong> SLA protected</span>
               <span><strong>18</strong> crews active</span>
             </div>
-            <apex-chart label="Service mix" data={serviceMix}></apex-chart>
-          </apex-card>
-          <apex-alert tone="info" heading="Business story">
+            <corva-chart label="Service mix" data={serviceMix}></corva-chart>
+          </corva-card>
+          <corva-alert tone="info" heading="Business story">
             Dispatch, customer success, and finance share the same source of truth instead of chasing updates through calls and spreadsheets.
-          </apex-alert>
+          </corva-alert>
         </div>
       </section>
 
       <section class="app-section" aria-labelledby="offer-title">
         <div class="app-section-header">
           <div>
-            <apex-typography id="offer-title" as="h2" variant="title">Northstar operating system</apex-typography>
-            <apex-typography variant="body">Built for service companies with dense regional coverage and demanding commercial accounts.</apex-typography>
+            <corva-typography id="offer-title" as="h2" variant="title">CorvaUI operating system</corva-typography>
+            <corva-typography variant="body">Built for service companies with dense regional coverage and demanding commercial accounts.</corva-typography>
           </div>
-          <apex-button-group label="Primary actions">
-            <apex-button size="sm">Create order</apex-button>
-            <apex-button size="sm" variant="secondary">Open dashboard</apex-button>
-          </apex-button-group>
+          <corva-button-group label="Primary actions">
+            <corva-button size="sm">Create order</corva-button>
+            <corva-button size="sm" variant="secondary">Open dashboard</corva-button>
+          </corva-button-group>
         </div>
 
         <div class="feature-grid">
-          <apex-card eyebrow="Command" heading="SLA-aware dispatch">
+          <corva-card eyebrow="Command" heading="SLA-aware dispatch">
             Assign work by trade, proximity, required equipment, and customer tier.
-          </apex-card>
-          <apex-card eyebrow="Records" heading="Commercial account memory">
+          </corva-card>
+          <corva-card eyebrow="Records" heading="Commercial account memory">
             Keep site contacts, asset history, warranties, and notes ready before the technician arrives.
-          </apex-card>
-          <apex-card eyebrow="Proof" heading="Closeout evidence">
+          </corva-card>
+          <corva-card eyebrow="Proof" heading="Closeout evidence">
             Package photos, signatures, timestamps, and billing context for faster approval.
-          </apex-card>
+          </corva-card>
         </div>
       </section>
 
@@ -98,20 +98,20 @@ const pathSteps = JSON.stringify([
           <div>
             <div class="app-section-header compact">
               <div>
-                <apex-typography id="proof-title" as="h2" variant="title">Customer proof</apex-typography>
-                <apex-typography variant="body">The fake business site still exercises real data, tables, charts, forms, and routed pages.</apex-typography>
+                <corva-typography id="proof-title" as="h2" variant="title">Customer proof</corva-typography>
+                <corva-typography variant="body">The fake business site still exercises real data, tables, charts, forms, and routed pages.</corva-typography>
               </div>
             </div>
-            <apex-data-table caption="Customer outcomes" columns={proofColumns} rows={proofRows}></apex-data-table>
+            <corva-data-table caption="Customer outcomes" columns={proofColumns} rows={proofRows}></corva-data-table>
           </div>
-          <apex-card eyebrow="Workflow" heading="From call to closeout">
-            <apex-stepper steps={pathSteps} active-index="1"></apex-stepper>
-            <apex-divider label="Next route"></apex-divider>
+          <corva-card eyebrow="Workflow" heading="From call to closeout">
+            <corva-stepper steps={pathSteps} active-index="1"></corva-stepper>
+            <corva-divider label="Next route"></corva-divider>
             <div class="app-actions">
-              <apex-link href={`${base}dashboard/`}>View dashboard</apex-link>
-              <apex-link href={`${base}work-orders/`}>Start work order</apex-link>
+              <corva-link href={`${base}dashboard/`}>View dashboard</corva-link>
+              <corva-link href={`${base}work-orders/`}>Start work order</corva-link>
             </div>
-          </apex-card>
+          </corva-card>
         </div>
       </section>
     </div>

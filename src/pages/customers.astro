@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "Northstar", href: base },
+  { label: "CorvaUI", href: base },
   { label: "Customers" },
 ]);
 
@@ -70,68 +70,68 @@ const siteTree = JSON.stringify([
 ]);
 ---
 
-<BaseLayout title="Customer Records | Northstar Field Services">
+<BaseLayout title="Customer Records | CorvaUI Field Services">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="customers-title">
         <div>
-          <apex-badge tone="info">Pipeline</apex-badge>
-          <apex-typography id="customers-title" as="h1" variant="display">Customer records</apex-typography>
-          <apex-typography variant="body">
-            Northstar account teams can scan commercial relationships, site trees, open opportunities, and service health without leaving the routed app.
-          </apex-typography>
+          <corva-badge tone="info">Pipeline</corva-badge>
+          <corva-typography id="customers-title" as="h1" variant="display">Customer records</corva-typography>
+          <corva-typography variant="body">
+            CorvaUI account teams can scan commercial relationships, site trees, open opportunities, and service health without leaving the routed app.
+          </corva-typography>
         </div>
-        <apex-search-form label="Search customer records" placeholder="Account, site, contact"></apex-search-form>
+        <corva-search-form label="Search customer records" placeholder="Account, site, contact"></corva-search-form>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Pipeline board and account detail">
-        <apex-card eyebrow="Pipeline" heading="Revenue movement">
-          <apex-workflow-board columns={boardColumns}></apex-workflow-board>
-        </apex-card>
+        <corva-card eyebrow="Pipeline" heading="Revenue movement">
+          <corva-workflow-board columns={boardColumns}></corva-workflow-board>
+        </corva-card>
 
-        <apex-card eyebrow="Selected account" heading="Cedarline Health">
+        <corva-card eyebrow="Selected account" heading="Cedarline Health">
           <div class="record-list">
             <span><strong>Tier</strong> premium regional healthcare network</span>
             <span><strong>Primary contact</strong> Amara Lewis, facilities director</span>
             <span><strong>Open risk</strong> renewal depends on imaging wing uptime report</span>
           </div>
-          <apex-divider label="Health"></apex-divider>
-          <apex-progress label="Renewal confidence" value="86"></apex-progress>
-          <apex-rating label="Service sentiment" value="5"></apex-rating>
-        </apex-card>
+          <corva-divider label="Health"></corva-divider>
+          <corva-progress label="Renewal confidence" value="86"></corva-progress>
+          <corva-rating label="Service sentiment" value="5"></corva-rating>
+        </corva-card>
       </section>
 
       <section class="app-two-column" aria-label="Customer records">
-        <apex-data-grid caption="Account grid" columns={customerColumns} rows={customerRows}></apex-data-grid>
-        <apex-card eyebrow="Sites" heading="Account hierarchy">
-          <apex-tree-view label="Customer site tree" items={siteTree}></apex-tree-view>
-        </apex-card>
+        <corva-data-grid caption="Account grid" columns={customerColumns} rows={customerRows}></corva-data-grid>
+        <corva-card eyebrow="Sites" heading="Account hierarchy">
+          <corva-tree-view label="Customer site tree" items={siteTree}></corva-tree-view>
+        </corva-card>
       </section>
 
       <section class="app-section" aria-labelledby="activity-title">
         <div class="app-section-header">
           <div>
-            <apex-typography id="activity-title" as="h2" variant="title">Latest account activity</apex-typography>
-            <apex-typography variant="body">List and detail patterns round out the customer workspace.</apex-typography>
+            <corva-typography id="activity-title" as="h2" variant="title">Latest account activity</corva-typography>
+            <corva-typography variant="body">List and detail patterns round out the customer workspace.</corva-typography>
           </div>
-          <apex-toggle-group
+          <corva-toggle-group
             label="Record view"
             options='[{"label":"All","value":"all"},{"label":"Open","value":"open"},{"label":"At risk","value":"risk"}]'
             value="open"
-          ></apex-toggle-group>
+          ></corva-toggle-group>
         </div>
         <div class="feature-grid">
-          <apex-card eyebrow="Today" heading="Beacon Retail expansion">
+          <corva-card eyebrow="Today" heading="Beacon Retail expansion">
             Three new stores added to the preventive maintenance proposal.
-          </apex-card>
-          <apex-card eyebrow="Yesterday" heading="Prairie Foods onboarding">
+          </corva-card>
+          <corva-card eyebrow="Yesterday" heading="Prairie Foods onboarding">
             Site access contacts confirmed for cold-chain equipment audit.
-          </apex-card>
-          <apex-card eyebrow="Friday" heading="Cedarline renewal proof">
+          </corva-card>
+          <corva-card eyebrow="Friday" heading="Cedarline renewal proof">
             Uptime export and closeout packet queued for quarterly review.
-          </apex-card>
+          </corva-card>
         </div>
       </section>
     </div>

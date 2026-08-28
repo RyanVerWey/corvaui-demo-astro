@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
 const breadcrumbs = JSON.stringify([
-  { label: "Northstar", href: base },
+  { label: "CorvaUI", href: base },
   { label: "Package proof" },
 ]);
 
@@ -15,8 +15,8 @@ const packageColumns = JSON.stringify([
 ]);
 
 const packageRows = JSON.stringify([
-  { package: "@apexui/web-components", version: "0.1.0", usage: "Custom elements registered in the shared Astro layout" },
-  { package: "@apexui/tokens", version: "0.1.0", usage: "Token CSS imported once and applied through data-apex-theme" },
+  { package: "@corvaui/web-components", version: "0.1.7", usage: "Custom elements registered in the shared Astro layout" },
+  { package: "@corvaui/tokens", version: "0.1.7", usage: "Token CSS imported once and applied through data-corva-theme" },
   { package: "astro", version: "^5.0.0", usage: "File-based static routes for the fake business app" },
 ]);
 
@@ -30,75 +30,76 @@ const routeRows = JSON.stringify([
   { route: "/dashboard/", proof: "Charts, workflow widgets, SLA tables" },
   { route: "/work-orders/", proof: "Form controls, validation, upload/date/select fields" },
   { route: "/customers/", proof: "Pipeline, records, grid, list, detail" },
+  { route: "/data-table/", proof: "Dedicated sortable/filterable service-record grid" },
   { route: "/settings/", proof: "Tabs, toggles, locale, account preferences" },
   { route: "/about/", proof: "Package and integration explanation" },
 ]);
 
 const integrationSteps = JSON.stringify([
-  { id: "tokens", label: "Import tokens", description: "@apexui/tokens/css loads theme variables." },
-  { id: "components", label: "Register elements", description: "Shared layout imports ApexUI custom elements once." },
+  { id: "tokens", label: "Import tokens", description: "@corvaui/tokens/css loads theme variables." },
+  { id: "components", label: "Register elements", description: "Shared layout imports CorvaUI custom elements once." },
   { id: "routes", label: "Compose pages", description: "Astro routes use static markup and local layout CSS." },
 ]);
 ---
 
-<BaseLayout title="Package Proof | Northstar Field Services">
+<BaseLayout title="Package Proof | CorvaUI Field Services">
   <main class="app-main">
     <div class="app-page">
-      <apex-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></apex-breadcrumbs>
+      <corva-breadcrumbs items={breadcrumbs} label="Page breadcrumb"></corva-breadcrumbs>
 
       <section class="page-intro" aria-labelledby="about-title">
         <div>
-          <apex-badge tone="success">Package proof</apex-badge>
-          <apex-typography id="about-title" as="h1" variant="display">Astro integration proof</apex-typography>
-          <apex-typography variant="body">
-            This Northstar route explains the installed ApexUI packages and shows that the demo is a multi-page Astro app, not a component preview page.
-          </apex-typography>
+          <corva-badge tone="success">Package proof</corva-badge>
+          <corva-typography id="about-title" as="h1" variant="display">Astro integration proof</corva-typography>
+          <corva-typography variant="body">
+            This CorvaUI route explains the installed CorvaUI packages and shows that the demo is a multi-page Astro app, not a component preview page.
+          </corva-typography>
         </div>
-        <apex-card eyebrow="Theme" heading="rose-light first">
-          <apex-progress label="Light route coverage" value="100"></apex-progress>
-          <apex-progress label="Dark smoke coverage" value="100"></apex-progress>
-        </apex-card>
+        <corva-card eyebrow="Theme" heading="rose-light first">
+          <corva-progress label="Light route coverage" value="100"></corva-progress>
+          <corva-progress label="Dark smoke coverage" value="100"></corva-progress>
+        </corva-card>
       </section>
 
       <section class="app-two-column app-two-column-wide" aria-label="Package proof tables">
-        <apex-data-table caption="Installed packages" columns={packageColumns} rows={packageRows}></apex-data-table>
-        <apex-card eyebrow="Integration" heading="How Astro uses ApexUI">
-          <apex-stepper steps={integrationSteps} active-index="2"></apex-stepper>
-          <apex-divider label="Constraint"></apex-divider>
-          <apex-alert tone="info" heading="Composition CSS only">
-            Local CSS handles page shell, grids, spacing, and responsive layout. Component visuals remain ApexUI web components and token-driven styles.
-          </apex-alert>
-        </apex-card>
+        <corva-data-table caption="Installed packages" columns={packageColumns} rows={packageRows}></corva-data-table>
+        <corva-card eyebrow="Integration" heading="How Astro uses CorvaUI">
+          <corva-stepper steps={integrationSteps} active-index="2"></corva-stepper>
+          <corva-divider label="Constraint"></corva-divider>
+          <corva-alert tone="info" heading="Composition CSS only">
+            Local CSS handles page shell, grids, spacing, and responsive layout. Component visuals remain CorvaUI web components and token-driven styles.
+          </corva-alert>
+        </corva-card>
       </section>
 
       <section class="app-section" aria-labelledby="routes-title">
         <div class="app-section-header">
           <div>
-            <apex-typography id="routes-title" as="h2" variant="title">Route acceptance map</apex-typography>
-            <apex-typography variant="body">Each file in src/pages maps to a required business surface.</apex-typography>
+            <corva-typography id="routes-title" as="h2" variant="title">Route acceptance map</corva-typography>
+            <corva-typography variant="body">Each file in src/pages maps to a required business surface.</corva-typography>
           </div>
-          <apex-link href="https://github.com/RyanVerWey/apexui-demo-astro/issues/5">Issue #5</apex-link>
+          <corva-badge tone="success">Current</corva-badge>
         </div>
-        <apex-data-grid caption="Astro routes" columns={routeColumns} rows={routeRows}></apex-data-grid>
+        <corva-data-grid caption="Astro routes" columns={routeColumns} rows={routeRows}></corva-data-grid>
       </section>
 
       <section class="app-section" aria-labelledby="next-title">
-        <apex-card eyebrow="Release evidence" heading="Northstar demo scope">
+        <corva-card eyebrow="Release evidence" heading="CorvaUI demo scope">
           <div class="feature-grid">
             <div class="proof-note">
-              <apex-icon name="sparkle" label="Theme icon"></apex-icon>
+              <corva-icon name="sparkle" label="Theme icon"></corva-icon>
               <span>Rose tokens power the canvas, text, surfaces, accents, and component states.</span>
             </div>
             <div class="proof-note">
-              <apex-icon name="layout-dashboard" label="Routes icon"></apex-icon>
-              <span>Astro file routing creates independent static pages under the GitHub Pages base path.</span>
+              <corva-icon name="layout-dashboard" label="Routes icon"></corva-icon>
+              <span>Astro file routing creates independent static pages under the demo subdomain.</span>
             </div>
             <div class="proof-note">
-              <apex-icon name="shield-check" label="Proof icon"></apex-icon>
-              <span>Business pages use ApexUI components as application controls and records.</span>
+              <corva-icon name="shield-check" label="Proof icon"></corva-icon>
+              <span>Business pages use CorvaUI components as application controls and records.</span>
             </div>
           </div>
-        </apex-card>
+        </corva-card>
       </section>
     </div>
   </main>
