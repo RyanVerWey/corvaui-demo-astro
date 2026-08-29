@@ -8,6 +8,7 @@ const routes = [
   ["stays", "/about/", "Hosted daily", 3],
   ["bookings", "/data-table/", "FH-2418", 0],
   ["reports", "/dashboard/", "This week", 1],
+  ["host", "/host/", "Arrival flow", 1],
 ] as const;
 
 for (const [name, path, expectedContent, expectedImageCount] of routes) {

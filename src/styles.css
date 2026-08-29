@@ -50,6 +50,7 @@ main { width: min(100%, 1260px); margin-inline: auto; padding: clamp(1rem, 3vw, 
 .page-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.68) contrast(1.03); }
 .page-photo figcaption { position: absolute; inset: auto .8rem .8rem; display: grid; gap: .2rem; padding: .8rem .9rem; color: oklch(96% .008 270); background: oklch(20% .012 270 / .94); border-radius: var(--corva-radius-sm); }
 .page-photo figcaption span { font-size: .72rem; font-weight: 800; text-transform: uppercase; }
+.host-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: 1.5rem; align-items: start; padding-bottom: 2rem; }
 .section-heading { display: grid; gap: .65rem; max-width: 760px; }
 .section-heading p { margin: 0; color: var(--corva-color-muted); }
 .section-heading.compact { gap: .25rem; margin-bottom: 1rem; }
@@ -88,7 +89,7 @@ corva-data-grid, corva-data-table, corva-paper { width: 100%; min-width: 0; max-
 .site-shell .corva-table-container { width: 100%; max-width: 100%; overflow-x: auto; }
 .table-section, .report-layout > div, .grid-shell { min-width: 0; max-width: 100%; overflow: hidden; }
 @media (max-width: 980px) {
-  .home-hero, .page-hero, .fieldnote-proof, .report-layout { grid-template-columns: 1fr; }
+  .home-hero, .page-hero, .fieldnote-proof, .report-layout, .host-layout { grid-template-columns: 1fr; }
   .home-hero { min-height: auto; }
   .hero-photo, .hero-photo img { min-height: 480px; }
   .house-intro { grid-template-columns: auto 1fr; }

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { routes, bookingRows, stayRows, revenueData, occupancyData } from "../src/content";
 
 describe("Fieldnote House demo contract", () => {
-  it("ships exactly the four required showcase routes", () => {
-    expect(routes.map((route) => route.href)).toEqual(["/", "/about/", "/data-table/", "/dashboard/"]);
+  it("ships the complete showcase route set", () => {
+    expect(routes.map((route) => route.href)).toEqual(["/", "/about/", "/data-table/", "/dashboard/", "/host/"]);
   });
   it("uses unique booking identifiers and enough rows for paging", () => {
     const ids = bookingRows.map((row) => row.id);

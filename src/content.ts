@@ -3,6 +3,7 @@ export const routes = [
   { id: "about", label: "Stay + Gather", href: "/about/" },
   { id: "data-table", label: "Bookings", href: "/data-table/" },
   { id: "dashboard", label: "Reports", href: "/dashboard/" },
+  { id: "host", label: "Host desk", href: "/host/" },
 ] as const;
 
 export const stayColumns = [
@@ -62,4 +63,16 @@ export const reportRows = [
   { period: "Next week", occupancy: "84%", adr: "$396", revenue: "$74,810" },
   { period: "September", occupancy: "88%", adr: "$402", revenue: "$318,900" },
   { period: "Q4 on books", occupancy: "72%", adr: "$384", revenue: "$821,400" },
+];
+
+export const hostWorkflow = [
+  { id: "prepare", title: "Prepare", items: [{ id: "nora", title: "Nora Vale arrival", meta: "Room 04" }, { id: "morrow", title: "Morrow Studio production", meta: "List due" }] },
+  { id: "confirm", title: "Confirm", items: [{ id: "kento", title: "Kento Mori menu", meta: "Chef review" }] },
+  { id: "ready", title: "Ready", items: [{ id: "amina", title: "Amina Hart transfer", meta: "Driver assigned" }] },
+];
+
+export const hostTimeline = [
+  { id: "profile", label: "Guest profile reviewed", description: "Accessibility, dietary, and arrival preferences confirmed.", meta: "09:10" },
+  { id: "room", label: "Room inspection complete", description: "Housekeeping and maintenance evidence attached.", meta: "11:42" },
+  { id: "note", label: "Arrival note scheduled", description: "Concierge message will send two hours before check-in.", meta: "12:05" },
 ];

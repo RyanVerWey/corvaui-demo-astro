@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { hostTimeline, hostWorkflow } from "../content";
+---
+<BaseLayout title="Host desk | Fieldnote House">
+  <header class="page-hero host-hero">
+    <div>
+      <corva-badge tone="success">31 of 34 arrivals ready</corva-badge>
+      <corva-typography as="h1" variant="display">A host desk built around the guest, not the checklist.</corva-typography>
+      <corva-typography variant="body">Coordinate arrival details, room readiness, dining, transport, and team ownership without turning hospitality into a wall of admin.</corva-typography>
+    </div>
+    <figure class="page-photo">
+      <img src="/images/fieldnote-guest-room.jpg" alt="Prepared guest room at Fieldnote House" width="1600" height="1067" loading="eager" />
+      <figcaption><span>Room 04</span><strong>Arrival standard verified at 11:42.</strong></figcaption>
+    </figure>
+  </header>
+
+  <section class="host-layout" aria-labelledby="arrival-title">
+    <corva-paper>
+      <corva-stack gap="md">
+        <corva-typography id="arrival-title" as="h2" variant="title">Arrival workspace</corva-typography>
+        <corva-select id="guest-select" label="Guest" value="nora"></corva-select>
+        <corva-date-picker label="Arrival date" value="2026-09-04"></corva-date-picker>
+        <corva-slider label="Room readiness" min="0" max="100" value="96"></corva-slider>
+        <corva-switch label="Send pre-arrival message automatically" checked></corva-switch>
+        <corva-alert tone="info" heading="Guest context">Late rail arrival. Keep supper service available until 21:30 and stage the east entrance.</corva-alert>
+        <corva-button>Confirm arrival plan</corva-button>
+      </corva-stack>
+    </corva-paper>
+    <corva-paper>
+      <corva-stack gap="md">
+        <corva-typography as="h2" variant="title">Readiness record</corva-typography>
+        <corva-timeline id="host-timeline"></corva-timeline>
+      </corva-stack>
+    </corva-paper>
+  </section>
+
+  <section class="table-section" aria-labelledby="host-flow-title">
+    <div class="section-heading compact">
+      <corva-typography id="host-flow-title" as="h2" variant="title">Arrival flow</corva-typography>
+      <p>Each stay has a visible stage, owner, and final readiness signal.</p>
+    </div>
+    <corva-workflow-board id="host-workflow"></corva-workflow-board>
+  </section>
+
+  <script define:vars={{ hostTimeline, hostWorkflow }}>
+    Promise.all([
+      customElements.whenDefined("corva-select"),
+      customElements.whenDefined("corva-timeline"),
+      customElements.whenDefined("corva-workflow-board"),
+    ]).then(() => {
+      Object.assign(document.querySelector("#guest-select"), { options: [
+        { label: "Nora Vale, Room 04", value: "nora" },
+        { label: "Kento Mori, House Stay", value: "kento" },
+        { label: "Morrow Studio, Retreat", value: "morrow" },
+      ] });
+      Object.assign(document.querySelector("#host-timeline"), { events: hostTimeline });
+      Object.assign(document.querySelector("#host-workflow"), { columns: hostWorkflow });
+    });
+  </script>
+</BaseLayout>
