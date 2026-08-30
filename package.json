@@ -13,8 +13,8 @@
     "test": "npm audit && npm run test:unit && npm run build && npm run test:e2e"
   },
   "dependencies": {
-    "@corvaui/tokens": "0.1.7",
-    "@corvaui/web-components": "0.1.7",
+    "@corvaui/tokens": "^0.1.8",
+    "@corvaui/web-components": "^0.1.8",
     "astro": "^7.2.9",
     "typescript": "^5.8.3"
   },
