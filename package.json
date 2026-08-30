@@ -10,7 +10,7 @@
     "test:unit": "vitest run",
     "pretest:e2e": "npm run build",
     "test:e2e": "playwright test",
-    "test": "npm audit && npm run test:unit && npm run build"
+    "test": "npm audit && npm run test:unit && npm run build && npm run test:e2e"
   },
   "dependencies": {
     "@corvaui/tokens": "0.1.7",
