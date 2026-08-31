@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { revenueData, occupancyData, reportColumns, reportRows } from "../content";
+const occupancySeries = [
+  { key: "occupancy", label: "Occupancy", color: "var(--corva-color-chart-series-1)" },
+  { key: "plan", label: "Plan", color: "var(--corva-color-chart-series-4)" },
+  { key: "priorYear", label: "Prior year", color: "var(--corva-color-chart-series-5)" },
+];
 ---
 <BaseLayout title="Reports | Fieldnote House">
   <header class="page-hero reports-hero">
@@ -21,7 +26,7 @@ import { revenueData, occupancyData, reportColumns, reportRows } from "../conten
 
   <section class="chart-layout">
     <corva-paper><corva-chart id="revenue-chart" label="Revenue mix"></corva-chart></corva-paper>
-    <corva-paper><corva-chart id="occupancy-chart" label="Forward occupancy"></corva-chart></corva-paper>
+    <corva-paper><corva-chart id="occupancy-chart" label="Forward occupancy" type="line"></corva-chart></corva-paper>
   </section>
 
   <section class="report-layout" aria-labelledby="outlook-title">
@@ -37,13 +42,13 @@ import { revenueData, occupancyData, reportColumns, reportRows } from "../conten
     </div>
   </section>
 
-  <script define:vars={{ revenueData, occupancyData, reportColumns, reportRows }}>
+  <script define:vars={{ revenueData, occupancyData, occupancySeries, reportColumns, reportRows }}>
     Promise.all([
       customElements.whenDefined("corva-chart"),
       customElements.whenDefined("corva-data-table"),
     ]).then(() => {
       Object.assign(document.querySelector("#revenue-chart"), { data: revenueData });
-      Object.assign(document.querySelector("#occupancy-chart"), { data: occupancyData });
+      Object.assign(document.querySelector("#occupancy-chart"), { data: occupancyData, series: occupancySeries });
       Object.assign(document.querySelector("#report-table"), { columns: reportColumns, rows: reportRows });
     });
   </script>

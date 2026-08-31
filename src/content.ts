@@ -47,10 +47,10 @@ export const revenueData = [
   { label: "Table", value: 9 },
 ];
 export const occupancyData = [
-  { label: "September", value: 88 },
-  { label: "October", value: 81 },
-  { label: "November", value: 74 },
-  { label: "December", value: 69 },
+  { label: "September", occupancy: 88, plan: 82, priorYear: 79 },
+  { label: "October", occupancy: 81, plan: 78, priorYear: 74 },
+  { label: "November", occupancy: 74, plan: 72, priorYear: 68 },
+  { label: "December", occupancy: 69, plan: 66, priorYear: 63 },
 ];
 export const reportColumns = [
   { key: "period", header: "Period" },
