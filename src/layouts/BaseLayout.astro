@@ -46,26 +46,9 @@ const currentPath = Astro.url.pathname.replace(basePath, "").replace(/\/$/, "") 
     </div>
 
     <script>
-      import "@corvaui/web-components/components/corva-alert.js";
-      import "@corvaui/web-components/components/corva-app-bar.js";
-      import "@corvaui/web-components/components/corva-badge.js";
-      import "@corvaui/web-components/components/corva-button.js";
-      import "@corvaui/web-components/components/corva-card.js";
-      import "@corvaui/web-components/components/corva-chart.js";
-      import "@corvaui/web-components/components/corva-data-grid.js";
-      import "@corvaui/web-components/components/corva-data-table.js";
-      import "@corvaui/web-components/components/corva-date-picker.js";
-      import "@corvaui/web-components/components/corva-link.js";
-      import "@corvaui/web-components/components/corva-paper.js";
-      import "@corvaui/web-components/components/corva-progress.js";
-      import "@corvaui/web-components/components/corva-select.js";
-      import "@corvaui/web-components/components/corva-slider.js";
-      import "@corvaui/web-components/components/corva-stack.js";
-      import "@corvaui/web-components/components/corva-switch.js";
-      import "@corvaui/web-components/components/corva-tabs.js";
-      import "@corvaui/web-components/components/corva-typography.js";
-      import "@corvaui/web-components/components/corva-timeline.js";
-      import "@corvaui/web-components/components/corva-workflow-board.js";
+      import { registerCorvaUI } from "@corvaui/astro";
+
+      await registerCorvaUI();
 
       const root = document.documentElement;
       const control = document.querySelector("#theme-switch");

@@ -56,3 +56,14 @@ test("theme control applies an accessible Graphite dark mode", async ({ page }, 
   expect(violations).toEqual([]);
   await page.screenshot({ path: testInfo.outputPath("graphite-dark.png"), fullPage: true });
 });
+
+test("reports render three distinct Graphite chart series", async ({ page }) => {
+  await page.goto("/dashboard/", { waitUntil: "networkidle" });
+  const legend = page.getByRole("group", { name: "Forward occupancy series" });
+  await expect(legend).toBeVisible();
+  await expect(page.locator(".corva-chart-legend-item")).toHaveCount(3);
+  const colors = await page.locator(".corva-chart-swatch").evaluateAll((nodes) =>
+    nodes.map((node) => getComputedStyle(node).backgroundColor),
+  );
+  expect(new Set(colors).size).toBe(3);
+});

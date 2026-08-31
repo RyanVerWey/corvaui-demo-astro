@@ -1,6 +1,6 @@
 # CorvaUI Astro Demo
 
-Public Vercel showcase using Astro, direct `@corvaui/web-components` custom elements, `@corvaui/tokens`, and the Graphite token family. Fieldnote House is a four-route hospitality site with image-led marketing, stay comparison, a booking DataGrid, and revenue reports.
+Public Vercel showcase using the first-class `@corvaui/astro` integration, `@corvaui/tokens`, and the Graphite token family. Fieldnote House is a multi-route hospitality site with image-led marketing, stay comparison, a booking DataGrid, and revenue reports.
 
 ## Routes
 
