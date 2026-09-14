@@ -6,15 +6,16 @@
   "scripts": {
     "dev": "astro dev --host 127.0.0.1",
     "build": "astro build",
+    "test:static": "node scripts/check-static-output.mjs",
     "preview": "astro preview --host 127.0.0.1",
     "test:unit": "vitest run",
     "pretest:e2e": "npm run build",
     "test:e2e": "playwright test",
-    "test": "npm audit && npm run test:unit && npm run build && npm run test:e2e"
+    "test": "npm audit && npm run test:unit && npm run build && npm run test:static && npm run test:e2e"
   },
   "dependencies": {
-    "@corvaui/tokens": "^0.1.8",
-    "@corvaui/web-components": "^0.1.8",
+    "@corvaui/astro": "^0.2.1",
+    "@corvaui/tokens": "^0.2.1",
     "astro": "^7.2.9",
     "typescript": "^5.8.3"
   },
