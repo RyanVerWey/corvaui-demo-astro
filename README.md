@@ -5,12 +5,10 @@ Public Vercel showcase using the first-class `@corvaui/astro` integration, `@cor
 ## Routes
 
 - `/` hospitality portfolio launch surface
-- `/dashboard/` revenue and arrival dashboard
-- `/work-orders/` event intake
-- `/customers/` guest records
+- `/about/` stay and gathering comparison
 - `/data-table/` sortable/filterable booking grid
-- `/settings/` hospitality workspace settings
-- `/about/` package proof
+- `/dashboard/` revenue and arrival reporting
+- `/host/` host-desk workflow
 
 ## Quality Gate
 

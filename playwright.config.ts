@@ -4,10 +4,14 @@ export default defineConfig({
   testDir: "./tests/e2e",
   outputDir: "./test-results",
   reporter: "line",
-  use: { baseURL: "http://127.0.0.1:4177", reducedMotion: "reduce", trace: "retain-on-failure" },
-  webServer: { command: "npx vite preview --host 127.0.0.1 --port 4177", url: "http://127.0.0.1:4177", reuseExistingServer: true },
+  use: { baseURL: "http://127.0.0.1:4197", reducedMotion: "reduce", trace: "retain-on-failure" },
+  webServer: {
+    command: "npx vite preview --host 127.0.0.1 --port 4197 --strictPort",
+    url: "http://127.0.0.1:4197",
+    reuseExistingServer: false,
+  },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1000 } } },
-    { name: "mobile", use: { ...devices["Pixel 7"] } },
+    { name: "mobile", use: { ...devices["Pixel 7"], viewport: { width: 320, height: 720 } } },
   ],
 });

@@ -1,5 +1,5 @@
 import { createRequire } from "node:module";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 
 const require = createRequire(import.meta.url);
 const axePath = require.resolve("axe-core/axe.min.js");
@@ -11,18 +11,37 @@ const routes = [
   ["host", "/host/", "Arrival flow", 1],
 ] as const;
 
+async function expectCorvaElementsReady(page: Page) {
+  await expect.poll(() => page.evaluate(() => [...document.querySelectorAll("*")]
+    .filter((element) => element.localName.startsWith("corva-"))
+    .filter((element) => !customElements.get(element.localName)
+      || !element.classList.contains("hydrated")
+      || getComputedStyle(element).visibility === "hidden")
+    .map((element) => element.localName))).toEqual([]);
+  expect(await page.evaluate(() => [...document.querySelectorAll("*")]
+    .filter((element) => element.localName.startsWith("corva-")).length)).toBeGreaterThan(0);
+}
+
 for (const [name, path, expectedContent, expectedImageCount] of routes) {
   test(`${name} route is responsive and WCAG AA clean`, async ({ page }, testInfo) => {
     const runtimeErrors: string[] = [];
+    const failedResponses: string[] = [];
     page.on("pageerror", (error) => runtimeErrors.push(error.message));
     page.on("console", (message) => {
       if (message.type() === "error" || /hydration/i.test(message.text())) runtimeErrors.push(message.text());
     });
+    page.on("response", (response) => {
+      if (response.status() >= 400) failedResponses.push(`${response.status()} ${response.url()}`);
+    });
     await page.goto(path, { waitUntil: "networkidle" });
+    await expectCorvaElementsReady(page);
     const viewportWidth = await page.evaluate(() => window.innerWidth);
-    expect(viewportWidth).toBe(testInfo.project.name === "mobile" ? 412 : 1440);
+    expect(viewportWidth).toBe(testInfo.project.name === "mobile" ? 320 : 1440);
     await expect(page.locator("h1").first()).toBeVisible();
     await expect(page.getByText(expectedContent, { exact: false }).first()).toBeVisible();
+    if (name === "home") {
+      await expect(page.getByText("Synthetic hospitality preview", { exact: true })).toBeVisible();
+    }
     const images = page.locator("main img");
     await expect(images).toHaveCount(expectedImageCount);
     for (let index = 0; index < expectedImageCount; index += 1) {
@@ -40,10 +59,17 @@ for (const [name, path, expectedContent, expectedImageCount] of routes) {
     }));
     expect(overflow.amount, overflow.elements.join("\n")).toBeLessThanOrEqual(1);
     expect(runtimeErrors).toEqual([]);
+    expect(failedResponses).toEqual([]);
     await page.addScriptTag({ path: axePath });
     const violations = await page.evaluate(async () => (await (window as typeof window & { axe: { run: (root: Document, options: unknown) => Promise<{ violations: unknown[] }> } }).axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa"] } })).violations);
     expect(violations).toEqual([]);
     await page.screenshot({ path: testInfo.outputPath(`${name}.png`), fullPage: true });
+    if (name === "home" && testInfo.project.name === "mobile") {
+      const menu = page.locator(".mobile-menu");
+      await menu.locator("summary").click();
+      await menu.getByRole("link", { name: "Reports" }).click();
+      await expect(page).toHaveURL(/\/dashboard\/$/);
+    }
   });
 }
 

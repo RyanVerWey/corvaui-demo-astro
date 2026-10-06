@@ -1,7 +1,7 @@
 :root { font-family: var(--corva-font-family-sans); color: var(--corva-color-text); background: var(--corva-color-canvas); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { min-width: 320px; margin: 0; overflow-x: hidden; }
+body { min-width: 0; margin: 0; overflow-x: hidden; }
 img { display: block; max-width: 100%; }
 .site-shell { min-height: 100vh; color: var(--corva-color-text); background: linear-gradient(180deg, color-mix(in oklab, var(--corva-color-subtle) 38%, transparent), transparent 26rem), var(--corva-color-canvas); }
 .skip-link { position: fixed; z-index: 40; top: 0; left: 1rem; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; color: var(--corva-color-on-accent); background: var(--corva-color-accent); }
@@ -89,7 +89,7 @@ corva-data-grid, corva-data-table, corva-paper { width: 100%; min-width: 0; max-
 .site-shell .corva-table-container { width: 100%; max-width: 100%; overflow-x: auto; }
 .table-section, .report-layout > div, .grid-shell { min-width: 0; max-width: 100%; overflow: hidden; }
 @media (max-width: 980px) {
-  .home-hero, .page-hero, .fieldnote-proof, .report-layout, .host-layout { grid-template-columns: 1fr; }
+  .home-hero, .page-hero, .fieldnote-proof, .report-layout, .host-layout { grid-template-columns: minmax(0, 1fr); }
   .home-hero { min-height: auto; }
   .hero-photo, .hero-photo img { min-height: 480px; }
   .house-intro { grid-template-columns: auto 1fr; }
